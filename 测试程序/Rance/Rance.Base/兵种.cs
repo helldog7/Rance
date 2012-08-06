@@ -8,10 +8,12 @@ namespace Rance.Base
     public class 兵种
     {
         public string Name { get; set; }
-        public int 攻 { get; set; }
-        public int 防 { get; set; }
-        public int 智 { get; set; }
-        public int 速 { get; set; }
+        public decimal 攻 { get; set; }
+        public decimal 防 { get; set; }
+        public decimal 智 { get; set; }
+        public decimal 速 { get; set; }
+
+        public bool 能否反击 { get; set; }
 
         public static 兵种 剑士 = new 兵种()
         {
@@ -19,16 +21,18 @@ namespace Rance.Base
             攻 = 8,
             防 = 4,
             智 = 4,
-            速 = 6
+            速 = 6,
+            能否反击 = true
         };
 
         public static 兵种 盾兵 = new 兵种()
         {
             Name = "盾兵",
-            攻 = 6,
+            攻 = 5,
             防 = 9,
             智 = 4,
-            速 = 6
+            速 = 6,
+            能否反击 = true
         };
 
         public static 兵种 弓兵 = new 兵种()
@@ -55,7 +59,8 @@ namespace Rance.Base
             攻 = 7,
             防 = 5,
             智 = 4,
-            速 = 9
+            速 = 9,
+            能否反击 = true
         };
 
         public static 兵种 和尚 = new 兵种()
@@ -64,7 +69,8 @@ namespace Rance.Base
             攻 = 7,
             防 = 7,
             智 = 5,
-            速 = 7
+            速 = 7,
+            能否反击 = true
         };
 
         public static 兵种 火枪 = new 兵种()
@@ -92,6 +98,25 @@ namespace Rance.Base
             防 = 4,
             智 = 8,
             速 = 5
+        };
+
+        public static 兵种 骑兵 = new 兵种()
+        {
+            Name = "骑兵",
+            攻 = 5,
+            防 = 5,
+            智 = 5,
+            速 = 7,
+            能否反击 = true
+        };
+
+        public static 兵种 炮兵 = new 兵种()
+        {
+            Name = "炮兵",
+            攻 = 8,
+            防 = 5,
+            智 = 4,
+            速 = 5,
         };
     }
 }

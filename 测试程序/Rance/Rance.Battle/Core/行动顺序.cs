@@ -16,6 +16,13 @@ namespace Rance.Battle
             }
         }
 
+        public void 初始化行动表(List<角色> list)
+        { }
 
+        public void 行动(角色 角色, 主动技能 技能)
+        { }
+
+        public void 打断(角色 角色)
+        { }
     }
 }
