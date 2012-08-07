@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Rance.Base;
 
 namespace Rance.Battle
 {
     public class 角色
     {
         #region 基础属性
-        
+
+        public string Name { get; set; }
+
         public 兵种 兵种 { get; set; }
 
-        public decimal 攻 { get; set; }
-        public decimal 防 { get; set; }
-        public decimal 智 { get; set; }
-        public decimal 速 { get; set; }
+        public int 攻 { get; set; }
+        public int 防 { get; set; }
+        public int 智 { get; set; }
+        public int 速 { get; set; }
 
         public int 最大兵力 { get; set; }
         public int 兵力 { get; set; }
@@ -25,10 +26,49 @@ namespace Rance.Battle
 
         public bool 是否败走 { get; set; }
 
-        public 赋予 攻击赋予 { get; set; }
-        public 赋予 防御赋予 { get; set; }
-        public 赋予 速度赋予 { get; set; }
-        public 赋予 智力赋予 { get; set; }
+        private 赋予 _攻击赋予;
+        public 赋予 攻击赋予 
+        {
+            get { return _攻击赋予; }
+            set {
+                if (_攻击赋予 != null && _攻击赋予.Level > value.Level)
+                    return;
+                _攻击赋予 = value;
+            }
+        }
+        private 赋予 _防御赋予;
+        public 赋予 防御赋予
+        {
+            get { return _防御赋予; }
+            set
+            {
+                if (_防御赋予 != null && _防御赋予.Level > value.Level)
+                    return;
+                _防御赋予 = value;
+            }
+        }
+        private 赋予 _速度赋予;
+        public 赋予 速度赋予
+        {
+            get { return _速度赋予; }
+            set
+            {
+                if (_速度赋予 != null && _速度赋予.Level > value.Level)
+                    return;
+                _速度赋予 = value;
+            }
+        }
+        private 赋予 _智力赋予;
+        public 赋予 智力赋予
+        {
+            get { return _智力赋予; ; }
+            set
+            {
+                if (_智力赋予 != null && _智力赋予.Level > value.Level)
+                    return;
+                _智力赋予 = value;
+            }
+        }
 
         public 被动技能 被动技能 { get; set; }
         public 主动技能 基础攻击技能 { get; set; }
@@ -41,7 +81,30 @@ namespace Rance.Battle
         public int 守护率 { get; set; }
         public int 全体守护率 { get; set; }
 
-        public 攻击技能 准备技能 { get; set; }
+        public 主动技能 准备技能 { get; set; }
+
+        public bool 护盾 { get; set; }
+
+        public List<效果> 效果List = new List<效果>();
+
+        public void Add(效果 效果)
+        {
+            foreach (var item in 效果List.ToArray())
+            {
+                if (item.GetType() == 效果.GetType())
+                    return;
+
+                if (item.GetType().IsSubclassOf(效果.GetType()))
+                    return;
+
+                if (效果.GetType().IsSubclassOf(item.GetType()))
+                    效果List.Remove(item);
+            }
+
+            效果List.Add(效果);
+        }
+
+        
 
         #endregion
 

@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public abstract class 效果
+    public class ActionResult
     {
+     
     }
 }

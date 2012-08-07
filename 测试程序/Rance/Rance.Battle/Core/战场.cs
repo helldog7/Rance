@@ -21,7 +21,7 @@ namespace Rance.Battle
 
         public 行动顺序 行动顺序 { get; set; }
 
-        public List<角色> 己方角色List { get; set; }
-        public List<角色> 敌方角色List { get; set; }
+        public List<角色> 己方角色List = new List<角色>();
+        public List<角色> 敌方角色List = new List<角色>();
     }
 }

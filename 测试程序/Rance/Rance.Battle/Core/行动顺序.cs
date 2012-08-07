@@ -24,5 +24,8 @@ namespace Rance.Battle
 
         public void 打断(角色 角色)
         { }
+
+        public void 准备(角色 角色, 准备技能 技能)
+        { }
     }
 }

@@ -5,10 +5,7 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public class 赋予
+    public abstract class 自己回合结束效果 : 回合结束效果
     {
-        public int Level { get; set; }
-        public bool 是否单回合 { get; set; }
     }
-
 }

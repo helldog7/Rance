@@ -23,9 +23,7 @@ namespace Rance.Battle
         {
             var 伤害 =  base.单角色伤害结算(角色1, 角色2);
             int 击倒几率 = Convert.ToInt32(伤害 / 角色2.兵力 / 10) + 击倒系数;
-            Random r = new Random(DateTime.Now.Millisecond);
-            var temp = r.Next(1, 101);
-            if (temp < 击倒几率)
+            if (Roll.Hit(击倒几率))
                 角色2.是否败走 = true;
 
             return 伤害;

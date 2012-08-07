@@ -10,6 +10,8 @@ namespace Rance.Battle
         public bool 可被守护 { get; set; }
         public decimal 伤害系数 = 1m;
         public int 打断系数 = 100;
+        public bool 物理系 { get; set; }
+        public bool 能否被反击 { get; set; }
 
         #region 计算
 
@@ -56,18 +58,42 @@ namespace Rance.Battle
             return Convert.ToInt32(伤害 * (1 + temp / 100m));
         }
 
-        public virtual int 单角色伤害结算(角色 角色1, 角色 角色2)
+        public virtual int 单角色伤害结算(角色 角色1, 角色 角色2,bool 是否反击)
         {
             var 基础伤害 = Get基础伤害(角色1, 角色2);
             var 兵种减伤 = Get兵种减伤(角色2);
             var 武将加成 = Get武将加成(角色1, 角色2);
 
-            return 计算最终伤害(基础伤害 * 兵种减伤 * 武将加成);
+            int 伤害 = 计算最终伤害(基础伤害 * 兵种减伤 * 武将加成);
+            foreach (效果 效果 in 角色1.效果List.ToArray())
+            {
+                if (!(效果 is 伤害结算效果))
+                    continue;
+                伤害结算效果 伤害结算效果 = (伤害结算效果)效果;
+                伤害 = 伤害结算效果.Excute(角色1, 角色2, 伤害, 是否反击);
+                if (伤害结算效果.持续类型 == 持续类型.一次)
+                    角色1.效果List.Remove(伤害结算效果);
+            }
+
+            foreach (效果 效果 in 角色2.效果List.ToArray())
+            {
+                if (!(效果 is 被伤害结算效果))
+                    continue;
+                被伤害结算效果 被伤害结算效果 = (被伤害结算效果)效果;
+                伤害 = 被伤害结算效果.Excute(角色1, 角色2, 伤害);
+                if (被伤害结算效果.持续类型 == 持续类型.一次)
+                    角色2.效果List.Remove(被伤害结算效果);
+            }
+            return 伤害;
         }
 
         public int 结算战果(int 伤害, 角色 角色)
         {
-            return Convert.ToInt32(Convert.ToDecimal(伤害) / 角色.最大兵力 * 100);
+            var i1 = Convert.ToInt32(Convert.ToDecimal(伤害) / 角色.最大兵力 * 100);
+            var i2 = 0;
+            if (角色.是否败走)
+                i2 = 200;
+            return i1 + i2;
         }
 
         private List<角色> get守护List(List<角色> list, 角色 角色)
@@ -91,36 +117,45 @@ namespace Rance.Battle
             return resultList;
         }
 
-        public virtual void Excute(技能环境 环境)
+        public override void Excute(技能环境 环境)
         {
             var total战果 = 0;
 
             foreach (var target in 环境.目标List)
             {
+                攻击结果 攻击结果 = new Battle.攻击结果()
+                {
+                    角色1 = 环境.施放者,
+                    角色2 = target,
+                    攻击技能 = this,
+                };
+                环境.ResultList.Add(攻击结果);
+
                 var 目标 = target;
 
                 if (this.可被守护)
                 {
-                    Random r = new Random(DateTime.Now.Millisecond);
                     var 守护List = get守护List(环境.战场.敌方角色List, target);
                     foreach (var 守护者 in 守护List)
                     {
-                        int value = r.Next(1,101);
                         if (守护者.守护率 > 0)
                         {
-                            if (守护者.守护率 > value)
+
+                            if (Roll.Hit(守护者.守护率))
                             {
                                 目标 = 守护者;
                                 守护者.守护率 -= 40;
+                                攻击结果.守护角色 = 守护者;
                                 break;
                             }
                         }
                         else
                         {
-                            if (守护者.守护率 > value)
+                            if (Roll.Hit(守护者.守护率))
                             {
                                 目标 = 守护者;
                                 守护者.全体守护率 -= 40;
+                                攻击结果.守护角色 = 守护者;
                                 break;
                             }
                         }
@@ -128,47 +163,78 @@ namespace Rance.Battle
                 }
 
                 //结算主动攻击
-                var 伤害 = 单角色伤害结算(环境.施放者, target);
+                var 伤害 = 单角色伤害结算(环境.施放者, target,false);
                 if (目标.兵力 < 伤害)
                     伤害 = 目标.兵力;
+                攻击结果.伤害 = 伤害;
 
-                var 战果 = 结算战果(伤害,target);
-                total战果 += 战果;
+                if (目标.护盾)
+                {
+                    伤害 = 0;
+                    目标.护盾 = false;
+                    攻击结果.是否被护盾抵挡 = true;
+                }
 
-                目标.兵力 -= 伤害;
-                if (目标.兵力 == 0)
+                if (目标.兵力 <= 伤害)
+                {
                     目标.是否败走 = true;
+                    攻击结果.是否败退 = true;
+                }
+
+                var 战果 = 结算战果(伤害, 目标);
+                total战果 += 战果;
+                攻击结果.战果 = 战果;
+
 
                 //结算打断
                 if (target.准备技能 != null)
                 {
-                    Random r = new Random(DateTime.Now.Millisecond);
-                    int value = r.Next(1, 101);
-                    if (value <= this.打断系数)
+                    if (Roll.Hit(打断系数))
                     {
                         环境.战场.行动顺序.打断(target);
+                        攻击结果.是否打断 = true;
                     }
                 }
                 //结算反击
-                else if (this.能否被反击 && 目标.兵种.能否反击 && !目标.是否败走)
+                else if (this.能否被反击 && 目标.兵种.能否反击)
                 {
-                    伤害 = Convert.ToInt32(单角色伤害结算(目标, 环境.施放者) * 常量.反击比率);
-                    if (环境.施放者.兵力 < 伤害)
-                        伤害 = 环境.施放者.兵力;
+                    反击结果 反击结果 = new Battle.反击结果() 
+                    {
+                        角色1 = 目标,
+                        角色2 = 环境.施放者,
+                    };
+                    环境.ResultList.Add(反击结果);
 
-                    战果 = 结算战果(伤害, 环境.施放者);
+                    var 反击伤害 = Convert.ToInt32(单角色伤害结算(目标, 环境.施放者,true) * 常量.反击比率);
+                    if (环境.施放者.兵力 < 反击伤害)
+                        反击伤害 = 环境.施放者.兵力;
+                    反击结果.伤害 = 伤害;
+
+                    if (环境.施放者.护盾)
+                    {
+                        伤害 = 0;
+                        环境.施放者.护盾 = false;
+                        反击结果.是否被护盾抵挡 = true;
+                    }
+
+                    战果 = 结算战果(反击伤害, 环境.施放者);
                     total战果 -= 战果;
+                    反击结果.战果 = 战果;
 
-                    环境.施放者.兵力 -= 伤害;
+                    环境.施放者.兵力 -= 反击伤害;
                     if (环境.施放者.兵力 == 0)
                     {
                         环境.施放者.是否败走 = true;
+                        反击结果.是否败退 = true;
                         break;
                     }
                 }
+
+                目标.兵力 -= 伤害;
+               
             }
 
-            //结算反击
+            环境.战场.行动顺序.行动(环境.施放者, this);
         }
 
         #endregion

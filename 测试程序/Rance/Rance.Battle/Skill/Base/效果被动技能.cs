@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public class 赋予
+    public class 效果被动技能 : 被动技能
     {
-        public int Level { get; set; }
-        public bool 是否单回合 { get; set; }
+        public 效果 效果 { get; set; }
     }
-
 }

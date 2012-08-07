@@ -10,6 +10,8 @@ namespace Rance.Battle
         public 战场 战场 { get; set; }
         public 角色 施放者 { get; set; }
         public bool IsTeamA {get;set;}
-        public List<角色> 目标List { get; set; }
+        public List<角色> 目标List = new List<角色>();
+
+        public List<ActionResult> ResultList = new List<ActionResult>();
     }
 }

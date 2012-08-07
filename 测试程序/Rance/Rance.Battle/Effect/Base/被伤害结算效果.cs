@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public class 赋予
+    public abstract class 被伤害结算效果:效果
     {
-        public int Level { get; set; }
-        public bool 是否单回合 { get; set; }
+        public abstract int Excute(角色 角色1, 角色 角色2, int 伤害);
     }
-
 }

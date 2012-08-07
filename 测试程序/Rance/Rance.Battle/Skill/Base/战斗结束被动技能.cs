@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public abstract class 战场开始效果 : 效果
+    public abstract class 战斗结束被动技能 : 被动技能
     {
-        abstract void Excute(战场 战场,bool 是否己方);
+        public abstract void Excute(战斗结果 结果);
     }
 }
