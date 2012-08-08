@@ -10,7 +10,7 @@ namespace Rance.Battle
         public 弓箭射击()
         {
             this.可被守护 = true;
-            this.技能速度 = 80;
+            this.技能速度 = 130;
             this.能否被反击 = false;
             this.物理系 = true;
             this.技能目标 = Battle.技能目标.全体任一;

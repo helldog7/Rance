@@ -16,5 +16,7 @@ namespace Rance.Battle
 
         public const decimal 兵种减伤系数 = 4m;
         public const decimal 武将减伤系数 = 0.12m;
+
+        public const int 打断延迟 = 80;
     }
 }

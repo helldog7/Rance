@@ -10,7 +10,7 @@ namespace Rance.Battle
         public int Level = 4;
         public 瞄准()
         {
-            this.技能速度 = 160;
+            this.技能速度 = 70;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.自己;
         }

@@ -23,5 +23,23 @@ namespace Rance
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            RoleMgt view = new RoleMgt();
+            view.ShowDialog();
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            TeamMgt view = new TeamMgt();
+            view.ShowDialog();
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            FightSetting view = new FightSetting();
+            view.ShowDialog();
+        }
     }
 }

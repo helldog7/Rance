@@ -9,7 +9,7 @@ namespace Rance.Battle
     {
         public 生机转换()
         {
-            this.技能速度 = 120;
+            this.技能速度 = 110;
             this.消耗行动点 = 2;
             this.技能目标 = Battle.技能目标.己方任一;
         }
@@ -36,7 +36,7 @@ namespace Rance.Battle
     {
         public 生机转换2()
         {
-            this.技能速度 = 120;
+            this.技能速度 = 110;
             this.消耗行动点 = 99;
             this.技能目标 = Battle.技能目标.己方全体;
         }

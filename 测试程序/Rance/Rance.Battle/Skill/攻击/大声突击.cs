@@ -5,25 +5,22 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public class 武将突击:攻击技能
+    public class 大声突击 : 攻击技能
     {
-        public 武将突击()
+        public 大声突击()
         {
             this.可被守护 = true;
-            this.技能速度 = 140;
+            this.技能速度 = 160;
             this.能否被反击 = true;
             this.物理系 = true;
             this.技能目标 = Battle.技能目标.最前列任一;
-            this.消耗行动点 = 99;
+            this.消耗行动点 = 2;
             this.打断系数 = 100;
         }
 
-        public override decimal Get基础伤害(角色 角色1,角色 角色2)
+        public override int 结算战果(int 伤害, 角色 角色)
         {
-            var value = base.Get基础伤害(角色1, 角色2);
-            value += 角色1.攻 * 25;
-
-            return value;
+            return base.结算战果(伤害, 角色) * 2;
         }
     }
 }

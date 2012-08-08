@@ -10,7 +10,7 @@ namespace Rance.Battle
         public int 基数 = 8;
         public 伪报()
         {
-            this.技能速度 = 120;
+            this.技能速度 = 140;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.己方全体;
         }

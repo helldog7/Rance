@@ -87,7 +87,7 @@ namespace Rance.Battle
             return 伤害;
         }
 
-        public int 结算战果(int 伤害, 角色 角色)
+        public virtual int 结算战果(int 伤害, 角色 角色)
         {
             var i1 = Convert.ToInt32(Convert.ToDecimal(伤害) / 角色.最大兵力 * 100);
             var i2 = 0;

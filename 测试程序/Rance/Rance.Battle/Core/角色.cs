@@ -13,6 +13,10 @@ namespace Rance.Battle
 
         public 兵种 兵种 { get; set; }
 
+        public int 临时攻 { get; set; }
+        public int 临时防 { get; set; }
+        public int 临时智 { get; set; }
+        public int 临时速 { get; set; }
         public int 攻 { get; set; }
         public int 防 { get; set; }
         public int 智 { get; set; }
@@ -20,6 +24,8 @@ namespace Rance.Battle
 
         public int 最大兵力 { get; set; }
         public int 兵力 { get; set; }
+
+        public int 顺序值 { get; set; }
 
         public int 最大行动点 { get; set; }
         public int 行动点 { get; set; }
@@ -140,9 +146,9 @@ namespace Rance.Battle
             get
             {
                 if (攻击赋予 == null)
-                    return 攻;
+                    return 临时攻;
                 else
-                    return 攻 * (1 + 攻击赋予.Level / 10m);
+                    return 临时攻 * (1 + 攻击赋予.Level / 10m);
             }   
         }
 
@@ -151,9 +157,9 @@ namespace Rance.Battle
             get
             {
                 if (防御赋予 == null)
-                    return 防;
+                    return 临时防;
                 else
-                    return 防 * (1 + 防御赋予.Level / 10m);
+                    return 临时防 * (1 + 防御赋予.Level / 10m);
             }
         }
 
@@ -162,9 +168,9 @@ namespace Rance.Battle
             get
             {
                 if (速度赋予 == null)
-                    return 速;
+                    return 临时速;
                 else
-                    return 速 * (1 + 速度赋予.Level / 10m);
+                    return 临时速 * (1 + 速度赋予.Level / 10m);
             }
         }
 
@@ -173,9 +179,9 @@ namespace Rance.Battle
             get
             {
                 if (智力赋予 == null)
-                    return 智;
+                    return 临时智;
                 else
-                    return 智 * (1 + 智力赋予.Level / 10m);
+                    return 临时智 * (1 + 智力赋予.Level / 10m);
             }
         }
         #endregion

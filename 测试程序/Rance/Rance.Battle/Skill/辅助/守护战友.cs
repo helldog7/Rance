@@ -10,7 +10,7 @@ namespace Rance.Battle
         public int 倍率 = 10;
         public 守护战友()
         {
-            this.技能速度 = 100;
+            this.技能速度 = 120;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.自己;
         }

@@ -10,7 +10,7 @@ namespace Rance.Battle
         public 骑兵冲锋()
         {
             this.可被守护 = true;
-            this.技能速度 = 80;
+            this.技能速度 = 150;
             this.能否被反击 = true;
             this.物理系 = true;
             this.技能目标 = Battle.技能目标.同排全体;

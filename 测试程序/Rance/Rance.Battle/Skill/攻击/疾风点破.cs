@@ -5,17 +5,17 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public class 火枪射击 : 攻击技能
+    public class 疾风点破:攻击技能
     {
-        public 火枪射击()
+        public 疾风点破()
         {
             this.可被守护 = true;
-            this.技能速度 = 230;
+            this.技能速度 = 150;
             this.能否被反击 = false;
             this.物理系 = true;
-            this.技能目标 = Battle.技能目标.同排最前列;
-            this.消耗行动点 = 1;
-            this.打断系数 = 100;
+            this.技能目标 = Battle.技能目标.全体任一;
+            this.消耗行动点 = 2;
+            this.打断系数 = 60;
         }
 
         public int 击倒系数 = 15;
@@ -28,30 +28,6 @@ namespace Rance.Battle
                 角色2.是否败走 = true;
 
             return 伤害;
-        }
-    }
-
-    public class 火枪射击2 : 火枪射击
-    {
-        public 火枪射击2()
-        {
-            this.伤害系数 = 1.2m;
-        }
-    }
-
-    public class 火枪射击3 : 火枪射击
-    {
-        public 火枪射击3()
-        {
-            this.伤害系数 = 1.4m;
-        }
-    }
-
-    public class 火枪阻击 : 火枪射击
-    {
-        public 火枪阻击()
-        {
-            this.击倒系数 = 35;
         }
     }
 }

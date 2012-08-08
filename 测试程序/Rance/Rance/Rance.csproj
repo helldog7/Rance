@@ -36,8 +36,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Rance.BL">
+      <HintPath>..\..\..\..\..\Work(New)\战斗系统\程序\Rance\Rance.BL\bin\Debug\Rance.BL.dll</HintPath>
+    </Reference>
+    <Reference Include="Rance.Core">
+      <HintPath>..\..\..\..\..\Work(New)\战斗系统\程序\Rance\Rance.Expression\bin\Debug\Rance.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Rance.Data">
+      <HintPath>..\..\..\..\..\Work(New)\战斗系统\程序\Rance\Rance.Data\bin\Debug\Rance.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Rance.WPFView">
+      <HintPath>..\..\..\..\..\Work(New)\战斗系统\程序\Rance\Rance.WPFView\bin\Debug\Rance.WPFView.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +70,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Win\Win_FightSetting.xaml.cs">
+      <DependentUpon>Win_FightSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Win\Win_Role.xaml.cs">
+      <DependentUpon>Win_Role.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Win\Win_RoleMgt.xaml.cs">
+      <DependentUpon>Win_RoleMgt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Win\Win_TeamMgt.xaml.cs">
+      <DependentUpon>Win_TeamMgt.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Win\Win_FightSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,8 +98,25 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Win\Win_Role.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win\Win_RoleMgt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win\Win_TeamMgt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +134,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,6 +150,9 @@
       <Project>{FDEE2EEA-0235-4861-A6CB-3187FBA2C7FC}</Project>
       <Name>Rance.Battle</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

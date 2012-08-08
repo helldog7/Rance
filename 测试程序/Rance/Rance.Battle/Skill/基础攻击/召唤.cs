@@ -9,7 +9,7 @@ namespace Rance.Battle
     {
         public 召唤()
         {
-            this.技能速度 = 200;
+            this.技能速度 = 45;
             this.技能目标 = Battle.技能目标.全体;
             this.消耗行动点 = 1;
             this.准备后执行技能 = new 召唤后();
@@ -21,7 +21,7 @@ namespace Rance.Battle
         public 召唤后()
         {
             this.可被守护 = false;
-            this.技能速度 = 80;
+            this.技能速度 = 190;
             this.能否被反击 = false;
             this.物理系 = false;
             this.消耗行动点 = 0;

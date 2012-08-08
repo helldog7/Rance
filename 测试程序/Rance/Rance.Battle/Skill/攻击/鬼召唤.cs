@@ -10,7 +10,7 @@ namespace Rance.Battle
         public 鬼召唤()
         {
             this.可被守护 = false;
-            this.技能速度 = 80;
+            this.技能速度 = 180;
             this.能否被反击 = false;
             this.物理系 = false;
             this.消耗行动点 = 1;

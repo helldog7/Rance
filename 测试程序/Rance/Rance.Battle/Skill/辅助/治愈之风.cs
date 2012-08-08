@@ -9,7 +9,7 @@ namespace Rance.Battle
     {
         public 治愈之风()
         {
-            this.技能速度 = 200;
+            this.技能速度 = 40;
             this.技能目标 = Battle.技能目标.己方全体;
             this.消耗行动点 = 2;
             this.准备后执行技能 = new 治愈之风后();
@@ -18,6 +18,13 @@ namespace Rance.Battle
 
     public class 治愈之风后 : 主动技能
     {
+        public 治愈之风后()
+        {
+            this.技能速度 = 140;
+            this.技能目标 = Battle.技能目标.己方全体;
+            this.消耗行动点 = 0;
+        }
+
         public int 系数 = 8;
         public decimal 兵力系数 = 0.5m;
         public override void Excute(技能环境 环境)
@@ -63,7 +70,7 @@ namespace Rance.Battle
     {
         public 治愈之雾()
         {
-            this.技能速度 = 60;
+            this.技能速度 = 170;
             this.技能目标 = Battle.技能目标.己方任一;
             this.消耗行动点 = 2;
         }

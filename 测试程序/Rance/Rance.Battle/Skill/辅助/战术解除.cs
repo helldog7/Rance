@@ -10,7 +10,7 @@ namespace Rance.Battle
         public int 基数 = 0;
         public 战术解除()
         {
-            this.技能速度 = 120;
+            this.技能速度 = 140;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.全体;
         }
@@ -138,7 +138,7 @@ namespace Rance.Battle
     {
         public 单体战术解除()
         {
-            this.技能速度 = 120;
+            this.技能速度 = 140;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.全体任一;
         }

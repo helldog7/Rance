@@ -10,7 +10,7 @@ namespace Rance.Battle
         public int Level = 4;
         public 单军战术()
         {
-            this.技能速度 = 120;
+            this.技能速度 = 140;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.己方任一;
         }

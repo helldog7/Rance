@@ -10,7 +10,7 @@ namespace Rance.Battle
         public int 基数 = 4;
         public 穿梭阵地()
         {
-            this.技能速度 = 180;
+            this.技能速度 = 40;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.己方全体;
         }

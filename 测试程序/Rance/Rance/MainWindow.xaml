@@ -1,8 +1,10 @@
 ﻿<Window x:Class="Rance.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="186" Width="258">
     <Grid>
-        
+        <Button Content="角色管理" Height="23" HorizontalAlignment="Left" Margin="59,12,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        <Button Content="队伍管理" Height="23" HorizontalAlignment="Left" Margin="59,54,0,0" Name="button2" VerticalAlignment="Top" Width="75" Click="button2_Click" />
+        <Button Content="战斗" Height="23" HorizontalAlignment="Left" Margin="59,94,0,0" Name="button3" VerticalAlignment="Top" Width="75" Click="button3_Click" />
     </Grid>
 </Window>

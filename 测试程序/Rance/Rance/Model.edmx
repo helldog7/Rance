@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RanceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="RanceModelStoreContainer">
+          <EntitySet Name="Role" EntityType="RanceModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Team" EntityType="RanceModel.Store.Team" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TeamRole" EntityType="RanceModel.Store.TeamRole" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_TEAMROLE_REFERENCE_ROLE" Association="RanceModel.Store.FK_TEAMROLE_REFERENCE_ROLE">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="TeamRole" EntitySet="TeamRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEAMROLE_REFERENCE_TEAM" Association="RanceModel.Store.FK_TEAMROLE_REFERENCE_TEAM">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="TeamRole" EntitySet="TeamRole" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="兵种" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="攻" Type="int" Nullable="false" />
+          <Property Name="防" Type="int" Nullable="false" />
+          <Property Name="速" Type="int" Nullable="false" />
+          <Property Name="智" Type="int" Nullable="false" />
+          <Property Name="行动点" Type="int" Nullable="false" />
+          <Property Name="兵力" Type="int" Nullable="false" />
+          <Property Name="基础攻击技能" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="技能1" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="技能2" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="被动技能" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="特殊技能" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TeamRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TeamID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="排" Type="int" Nullable="false" />
+          <Property Name="列" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TEAMROLE_REFERENCE_ROLE">
+          <End Role="Role" Type="RanceModel.Store.Role" Multiplicity="1" />
+          <End Role="TeamRole" Type="RanceModel.Store.TeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEAMROLE_REFERENCE_TEAM">
+          <End Role="Team" Type="RanceModel.Store.Team" Multiplicity="1" />
+          <End Role="TeamRole" Type="RanceModel.Store.TeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamRole">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RanceModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="RanceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Role" EntityType="RanceModel.Role" />
+          <EntitySet Name="Team" EntityType="RanceModel.Team" />
+          <EntitySet Name="TeamRole" EntityType="RanceModel.TeamRole" />
+          <AssociationSet Name="FK_TEAMROLE_REFERENCE_ROLE" Association="RanceModel.FK_TEAMROLE_REFERENCE_ROLE">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="TeamRole" EntitySet="TeamRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEAMROLE_REFERENCE_TEAM" Association="RanceModel.FK_TEAMROLE_REFERENCE_TEAM">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="TeamRole" EntitySet="TeamRole" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="兵种" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="攻" Type="Int32" Nullable="false" />
+          <Property Name="防" Type="Int32" Nullable="false" />
+          <Property Name="速" Type="Int32" Nullable="false" />
+          <Property Name="智" Type="Int32" Nullable="false" />
+          <Property Name="行动点" Type="Int32" Nullable="false" />
+          <Property Name="兵力" Type="Int32" Nullable="false" />
+          <Property Name="基础攻击技能" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="技能1" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="技能2" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="被动技能" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="TeamRole" Relationship="RanceModel.FK_TEAMROLE_REFERENCE_ROLE" FromRole="Role" ToRole="TeamRole" />
+          <Property Type="String" Name="特殊技能" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="TeamRole" Relationship="RanceModel.FK_TEAMROLE_REFERENCE_TEAM" FromRole="Team" ToRole="TeamRole" />
+        </EntityType>
+        <EntityType Name="TeamRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="TeamID" Type="Guid" Nullable="false" />
+          <Property Name="RoleID" Type="Guid" Nullable="false" />
+          <Property Name="排" Type="Int32" Nullable="false" />
+          <Property Name="列" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="RanceModel.FK_TEAMROLE_REFERENCE_ROLE" FromRole="TeamRole" ToRole="Role" />
+          <NavigationProperty Name="Team" Relationship="RanceModel.FK_TEAMROLE_REFERENCE_TEAM" FromRole="TeamRole" ToRole="Team" />
+        </EntityType>
+        <Association Name="FK_TEAMROLE_REFERENCE_ROLE">
+          <End Role="Role" Type="RanceModel.Role" Multiplicity="1" />
+          <End Role="TeamRole" Type="RanceModel.TeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEAMROLE_REFERENCE_TEAM">
+          <End Role="Team" Type="RanceModel.Team" Multiplicity="1" />
+          <End Role="TeamRole" Type="RanceModel.TeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamRole">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RanceModelStoreContainer" CdmEntityContainer="RanceEntities">
+          <EntitySetMapping Name="Role"><EntityTypeMapping TypeName="RanceModel.Role"><MappingFragment StoreEntitySet="Role">
+            <ScalarProperty Name="特殊技能" ColumnName="特殊技能" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="兵种" ColumnName="兵种" />
+            <ScalarProperty Name="攻" ColumnName="攻" />
+            <ScalarProperty Name="防" ColumnName="防" />
+            <ScalarProperty Name="速" ColumnName="速" />
+            <ScalarProperty Name="智" ColumnName="智" />
+            <ScalarProperty Name="行动点" ColumnName="行动点" />
+            <ScalarProperty Name="兵力" ColumnName="兵力" />
+            <ScalarProperty Name="基础攻击技能" ColumnName="基础攻击技能" />
+            <ScalarProperty Name="技能1" ColumnName="技能1" />
+            <ScalarProperty Name="技能2" ColumnName="技能2" />
+            <ScalarProperty Name="被动技能" ColumnName="被动技能" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Team"><EntityTypeMapping TypeName="RanceModel.Team"><MappingFragment StoreEntitySet="Team">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TeamRole"><EntityTypeMapping TypeName="RanceModel.TeamRole"><MappingFragment StoreEntitySet="TeamRole">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+            <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+            <ScalarProperty Name="排" ColumnName="排" />
+            <ScalarProperty Name="列" ColumnName="列" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="RanceModel.Role" Width="1.5" PointX="0.75" PointY="6.5" Height="3.6892097981770817" IsExpanded="true" />
+        <EntityTypeShape EntityType="RanceModel.Team" Width="1.5" PointX="0.75" PointY="1.375" Height="1.5879931640624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="RanceModel.TeamRole" Width="1.5" PointX="3" PointY="1" Height="2.3520719401041656" IsExpanded="true" />
+        <AssociationConnector Association="RanceModel.FK_TEAMROLE_REFERENCE_ROLE" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.34460489908854" />
+          <ConnectorPoint PointX="3.75" PointY="8.34460489908854" />
+          <ConnectorPoint PointX="3.75" PointY="3.3520719401041656" />
+        </AssociationConnector>
+        <AssociationConnector Association="RanceModel.FK_TEAMROLE_REFERENCE_TEAM" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.16899658203125" />
+          <ConnectorPoint PointX="3" PointY="2.16899658203125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

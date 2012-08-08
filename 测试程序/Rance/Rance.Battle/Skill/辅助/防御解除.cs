@@ -9,7 +9,7 @@ namespace Rance.Battle
     {
         public 防御解除()
         {
-            this.技能速度 = 80;
+            this.技能速度 = 140;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.全体;
         }
