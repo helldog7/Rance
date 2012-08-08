@@ -9,6 +9,7 @@ namespace Rance.Battle
     {
         public int Level { get; set; }
         public bool 是否单回合 { get; set; }
+        public int 回合数 { get; set; }
     }
 
 }

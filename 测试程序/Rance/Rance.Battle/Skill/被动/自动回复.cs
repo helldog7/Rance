@@ -9,7 +9,7 @@ namespace Rance.Battle
     {
         public override void Excute(技能环境 环境)
         {
-            环境.施放者.效果List.Add(new 自动恢复效果());
+            环境.施放者.效果List.Add(new 自动回复效果());
         }
     }
 
@@ -17,7 +17,7 @@ namespace Rance.Battle
     {
         public override void Excute(技能环境 环境)
         {
-            环境.施放者.效果List.Add(new 自动恢复2效果());
+            环境.施放者.效果List.Add(new 自动回复2效果());
         }
     }
 
@@ -25,7 +25,7 @@ namespace Rance.Battle
     {
         public override void Excute(技能环境 环境)
         {
-            环境.施放者.效果List.Add(new 自动恢复3效果());
+            环境.施放者.效果List.Add(new 自动回复3效果());
         }
     }
 }

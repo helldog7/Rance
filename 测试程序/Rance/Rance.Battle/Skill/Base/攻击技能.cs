@@ -23,12 +23,12 @@ namespace Rance.Battle
                 return 角色1.实际兵力 * 角色1.兵种.智 * 0.7m * 伤害系数;
         }
 
-        public virtual decimal Get兵种减伤(角色 角色)
+        public virtual decimal Get兵种减伤(角色 角色,int 战场修正)
         {
             if (物理系)
-                return 常量.兵种减伤系数 / (常量.兵种减伤系数 + 角色.兵种.防);
+                return 常量.兵种减伤系数 / (常量.兵种减伤系数 + 角色.兵种.防 * (100 - 战场修正)/100);
             else
-                return 常量.兵种减伤系数 / (常量.兵种减伤系数 + 角色.兵种.智);
+                return 常量.兵种减伤系数 / (常量.兵种减伤系数 + 角色.兵种.智 * (100 - 战场修正) / 100);
         }
 
         public virtual decimal Get武将加成(角色 角色1, 角色 角色2)
@@ -55,13 +55,13 @@ namespace Rance.Battle
         {
             Random r = new Random(DateTime.Now.Millisecond);
             int temp = r.Next(-5, 6);
-            return Convert.ToInt32(伤害 * (1 + temp / 100m));
+            return Convert.ToInt32(伤害 * (1 + temp / 100m) );
         }
 
-        public virtual int 单角色伤害结算(角色 角色1, 角色 角色2,bool 是否反击)
+        public virtual int 单角色伤害结算(角色 角色1, 角色 角色2,bool 是否反击,int 战场修正)
         {
             var 基础伤害 = Get基础伤害(角色1, 角色2);
-            var 兵种减伤 = Get兵种减伤(角色2);
+            var 兵种减伤 = Get兵种减伤(角色2, 战场修正);
             var 武将加成 = Get武将加成(角色1, 角色2);
 
             int 伤害 = 计算最终伤害(基础伤害 * 兵种减伤 * 武将加成);
@@ -163,7 +163,7 @@ namespace Rance.Battle
                 }
 
                 //结算主动攻击
-                var 伤害 = 单角色伤害结算(环境.施放者, target,false);
+                var 伤害 = 单角色伤害结算(环境.施放者, target,false,环境.战场.战场修正);
                 if (目标.兵力 < 伤害)
                     伤害 = 目标.兵力;
                 攻击结果.伤害 = 伤害;
@@ -205,7 +205,7 @@ namespace Rance.Battle
                     };
                     环境.ResultList.Add(反击结果);
 
-                    var 反击伤害 = Convert.ToInt32(单角色伤害结算(目标, 环境.施放者,true) * 常量.反击比率);
+                    var 反击伤害 = Convert.ToInt32(单角色伤害结算(目标, 环境.施放者, true, 环境.战场.战场修正) * 常量.反击比率);
                     if (环境.施放者.兵力 < 反击伤害)
                         反击伤害 = 环境.施放者.兵力;
                     反击结果.伤害 = 伤害;

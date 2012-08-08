@@ -16,5 +16,6 @@ namespace Rance.Battle
         后二列任一,
         己方全体,
         己方任一,
+        自己
     }
 }

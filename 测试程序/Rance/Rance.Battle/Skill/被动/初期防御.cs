@@ -10,7 +10,19 @@ namespace Rance.Battle
         public override void Excute(技能环境 环境)
         {
             if (环境.施放者.守护率 == 0 && 环境.施放者.全体守护率 == 0)
+            {
                 环境.施放者.守护率 = 50;
+
+                环境.ResultList.Add(new 守护结果()
+                {
+                    技能 = this,
+                    角色 = 环境.施放者,
+                    守护率 = 50,
+                    全体守护率 = 0 - 环境.施放者.全体守护率
+                });
+
+                环境.施放者.全体守护率 = 0;
+            }
         }
     }
 
@@ -20,6 +32,16 @@ namespace Rance.Battle
         {
 
             环境.施放者.守护率 = 120;
+
+            环境.ResultList.Add(new 守护结果()
+            {
+                技能 = this,
+                角色 = 环境.施放者,
+                守护率 = 120,
+                全体守护率 = 0 - 环境.施放者.全体守护率
+            });
+
+            环境.施放者.全体守护率 = 0;
         }
     }
 
@@ -28,6 +50,16 @@ namespace Rance.Battle
         public override void Excute(技能环境 环境)
         {
             环境.施放者.全体守护率 = 50;
+
+            环境.ResultList.Add(new 守护结果()
+            {
+                技能 = this,
+                角色 = 环境.施放者,
+                守护率 = 0,
+                全体守护率 = 50
+            });
+
+            环境.施放者.守护率 = 0;
         }
     }
 }

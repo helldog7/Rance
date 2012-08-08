@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public class 自动恢复效果 : 自己回合结束效果
+    public class 自动回复效果 : 自己回合结束效果
     {
         public int 回复量 = 50;
 
@@ -25,17 +25,17 @@ namespace Rance.Battle
         }
     }
 
-    public class 自动恢复2效果 : 自动恢复效果
+    public class 自动回复2效果 : 自动回复效果
     {
-        public 自动恢复2效果()
+        public 自动回复2效果()
         {
             回复量 = 80;
         }
     }
 
-    public class 自动恢复3效果 : 自动恢复效果
+    public class 自动回复3效果 : 自动回复效果
     {
-        public 自动恢复3效果()
+        public 自动回复3效果()
         {
             回复量 = 120;
         }

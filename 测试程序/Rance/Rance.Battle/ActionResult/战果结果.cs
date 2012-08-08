@@ -5,15 +5,15 @@ using System.Text;
 
 namespace Rance.Battle
 {
-    public class 效果结果:ActionResult
+    public class 战果结果:ActionResult
     {
-        public 效果 效果;
+        public 技能 技能;
         public 角色 角色;
-        public string Text;
+        public int 战果;
 
         public override string ToString()
         {
-            return string.Format("{0} 对 {1} {2}!", 效果, 角色.Name, Text );
+            return string.Format("{0} 使用 {1},获得 {2}点战果!", 角色, 技能, 战果);
         }
     }
 }
