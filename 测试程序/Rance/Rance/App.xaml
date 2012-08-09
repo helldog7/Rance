@@ -1,8 +1,12 @@
 ﻿<Application x:Class="Rance.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Rance.Tools"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:BoolBrushConverter x:Key="BoolBrushConverter"/>
+        <local:TeamBrushConverter x:Key="TeamBrushConverter"/>
+        <local:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        <local:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
     </Application.Resources>
 </Application>

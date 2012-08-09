@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Rance.Us_Role"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Rance.Tools"
+             mc:Ignorable="d" 
+             d:DesignHeight="132" d:DesignWidth="188" Height="132" Width="188"
+             BorderBrush="{Binding 行动中,Converter={StaticResource BoolVisibilityConverter}}" BorderThickness="2" Visibility="Hidden" DataContextChanged="UserControl_DataContextChanged">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="112*" />
+            <ColumnDefinition Width="67*" />
+        </Grid.ColumnDefinitions>
+        <Label Content="{Binding Name}" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" FontSize="14" FontWeight="Black" />
+        <Label Content="行动力" Height="28" Margin="5,48,98,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="{Binding 行动力}" Height="28" HorizontalAlignment="Left" Margin="50,48,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="兵力" Height="28" HorizontalAlignment="Left" Margin="81,48,0,0" Name="label4" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="{Binding 兵力}" Height="28" HorizontalAlignment="Left" Margin="108,48,0,0" Name="label5" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="{Binding State}" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label6" VerticalAlignment="Top" FontSize="15" Width="48" Grid.Column="1" />
+        <Label Content="{Binding 守护Text}" FontSize="15" Height="28" HorizontalAlignment="Left" Margin="5,88,0,0" Name="label7" VerticalAlignment="Top" Width="61" />
+        <Label Content="攻▲" Height="28" HorizontalAlignment="Left" Margin="69,82,0,0" Name="label8" VerticalAlignment="Top" FontSize="12" Visibility="{Binding 攻赋予,Converter={StaticResource BoolVisibilityConverter}}"/>
+        <Label Content="防▲" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="105,82,0,0" Name="label9" VerticalAlignment="Top" Visibility="{Binding 防赋予,Converter={StaticResource BoolVisibilityConverter}}" Grid.ColumnSpan="2" />
+        <Label Content="速▲" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="69,0,0,4" Name="label10" VerticalAlignment="Bottom" Visibility="{Binding 速赋予,Converter={StaticResource BoolVisibilityConverter}}"/>
+        <Label Content="智▲" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="105,96,0,0" Name="label11" VerticalAlignment="Top" Visibility="{Binding 智赋予,Converter={StaticResource BoolVisibilityConverter}}" Grid.ColumnSpan="2" />
+        <Label Content="护盾" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="33,88,0,0" Name="label12" VerticalAlignment="Top" Visibility="{Binding 护盾, Converter={StaticResource BoolVisibilityConverter}}" Grid.Column="1" />
+        <Label Content="{Binding 兵种}" Height="28" HorizontalAlignment="Left" Margin="81,12,0,0" Name="label13" VerticalAlignment="Top" />
+        <Rectangle Height="124" HorizontalAlignment="Left" Margin="2,2,0,0" Name="rectangle1" Stroke="Gold" StrokeThickness="2" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" Visibility="{Binding 选择中, Converter={StaticResource BoolVisibilityConverter}}"/>
+    </Grid>
+</UserControl>

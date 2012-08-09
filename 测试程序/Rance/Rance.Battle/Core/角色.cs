@@ -31,6 +31,10 @@ namespace Rance.Battle
         public int 行动点 { get; set; }
 
         public bool 是否败走 { get; set; }
+        public bool 是否准备 { get; set; }
+        public bool 是否完结 { get; set; }
+
+        public bool IsTeamA { get; set; }
 
         private 赋予 _攻击赋予;
         public 赋予 攻击赋予 
@@ -81,6 +85,7 @@ namespace Rance.Battle
         public 主动技能 技能1 { get; set; }
         public 主动技能 技能2 { get; set; }
         public 技能 特殊技能 { get; set; }
+        public 主动技能 待机 { get; set; }
 
         public int 排 { get; set; }
         public int 列 { get; set; }

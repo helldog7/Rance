@@ -28,6 +28,7 @@ namespace Rance.Battle
                 int max = Convert.ToInt32((20 - 角色.实际速) * 100);
                 角色.顺序值 = r.Next(min, max) / 10m;
             }
+            this.list = list;
         }
 
         public void 行动(角色 角色, 主动技能 技能)

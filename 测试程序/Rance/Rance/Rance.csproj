@@ -72,22 +72,67 @@
     </ApplicationDefinition>
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Team.cs" />
-    <Compile Include="View\Win\Win_FightSetting.xaml.cs">
+    <Compile Include="Tools\BoolBrushConverter.cs" />
+    <Compile Include="Tools\BoolVisibilityConverter.cs" />
+    <Compile Include="Tools\NullVisibilityConverter.cs" />
+    <Compile Include="Tools\TeamBrushConverter.cs" />
+    <Compile Include="UIData\UIFightSetting.cs" />
+    <Compile Include="UIData\UIObject.cs" />
+    <Compile Include="UIData\UI战斗.cs" />
+    <Compile Include="UIData\UI技能.cs" />
+    <Compile Include="UIData\UI行动顺序.cs" />
+    <Compile Include="UIData\UI角色.cs" />
+    <Compile Include="View\UI_RoleInfo.xaml.cs">
+      <DependentUpon>UI_RoleInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Us_ActionItem.xaml.cs">
+      <DependentUpon>Us_ActionItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Us_ActionList.xaml.cs">
+      <DependentUpon>Us_ActionList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Us_Role.xaml.cs">
+      <DependentUpon>Us_Role.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Win\Win_Fight.xaml.cs">
+      <DependentUpon>Win_Fight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Win\Win_FightSetting.xaml.cs">
       <DependentUpon>Win_FightSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Win\Win_Role.xaml.cs">
+    <Compile Include="Win\Win_Role.xaml.cs">
       <DependentUpon>Win_Role.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Win\Win_RoleMgt.xaml.cs">
+    <Compile Include="Win\Win_RoleMgt.xaml.cs">
       <DependentUpon>Win_RoleMgt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Win\Win_Team.xaml.cs">
+    <Compile Include="Win\Win_Team.xaml.cs">
       <DependentUpon>Win_Team.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Win\Win_TeamMgt.xaml.cs">
+    <Compile Include="Win\Win_TeamMgt.xaml.cs">
       <DependentUpon>Win_TeamMgt.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\Win\Win_FightSetting.xaml">
+    <Page Include="View\UI_RoleInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Us_ActionItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Us_ActionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Us_Role.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win\Win_Fight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win\Win_FightSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,19 +148,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Win\Win_Role.xaml">
+    <Page Include="Win\Win_Role.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Win\Win_RoleMgt.xaml">
+    <Page Include="Win\Win_RoleMgt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Win\Win_Team.xaml">
+    <Page Include="Win\Win_Team.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Win\Win_TeamMgt.xaml">
+    <Page Include="Win\Win_TeamMgt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

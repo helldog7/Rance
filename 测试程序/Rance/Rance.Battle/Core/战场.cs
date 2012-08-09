@@ -11,7 +11,7 @@ namespace Rance.Battle
         public string 敌方队伍名称 { get; set; }
 
         public int 最大回合数 { get; set; }
-        public int 当前回合数 { get; set; }
+        public int 当前回合 { get; set; }
 
         //以TeamA为标准，+1000为最大，-1000最小
         public int 战果 { get; set; }
@@ -40,7 +40,7 @@ namespace Rance.Battle
                 inner战场.敌方队伍名称 = 己方队伍名称;
                 inner战场.己方角色List = 敌方角色List;
                 inner战场.敌方角色List = 己方角色List;
-                inner战场.当前回合数 = 当前回合数;
+                inner战场.当前回合 = 当前回合;
             }
             inner战场.最大回合数 = 最大回合数;
             inner战场.战果 = 0 - 战果;
@@ -51,7 +51,7 @@ namespace Rance.Battle
 
         public void 反转Save()
         {
-            this.当前回合数 = inner战场.当前回合数;
+            this.当前回合 = inner战场.当前回合;
             this.战果 = 0 - inner战场.战果;
             this.战场修正 = 0 - inner战场.战场修正;
             this.行动顺序 = inner战场.行动顺序;

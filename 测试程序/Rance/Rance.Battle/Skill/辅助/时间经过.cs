@@ -17,7 +17,7 @@ namespace Rance.Battle
 
         public override void Excute(技能环境 环境)
         {
-            环境.战场.当前回合数 += 回合数;
+            环境.战场.当前回合 += 回合数;
             环境.ResultList.Add(new 消耗回合结果()
             {
                 技能 = this,

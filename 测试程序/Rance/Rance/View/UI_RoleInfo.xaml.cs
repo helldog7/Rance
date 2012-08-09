@@ -9,18 +9,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Rance
+namespace Rance.View
 {
     /// <summary>
-    /// FightSetting.xaml 的交互逻辑
+    /// UI_RoleInfo.xaml 的交互逻辑
     /// </summary>
-    public partial class FightSetting : Window
+    public partial class UI_RoleInfo : UserControl
     {
-        public FightSetting()
+        public UI_RoleInfo()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (DataContext != null)
+                this.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }

@@ -127,6 +127,7 @@
     <Compile Include="Skill\被动\速度运.cs" />
     <Compile Include="Skill\被动\防御运.cs" />
     <Compile Include="Skill\被动\阵法.cs" />
+    <Compile Include="Skill\辅助\待机.cs" />
     <Compile Include="Skill\辅助\生机转换.cs" />
     <Compile Include="Skill\辅助\伪报.cs" />
     <Compile Include="Skill\辅助\全军战术.cs" />
@@ -141,6 +142,16 @@
     <Compile Include="Skill\辅助\遁术.cs" />
     <Compile Include="Skill\辅助\防御解除.cs" />
     <Compile Include="Skill\辅助\阴阳护盾.cs" />
+    <Compile Include="Tools\DynamicMemberHandle.cs" />
+    <Compile Include="Tools\DynamicMethodHandle.cs" />
+    <Compile Include="Tools\DynamicMethodHandlerFactory.cs" />
+    <Compile Include="Tools\Field.cs" />
+    <Compile Include="Tools\IMember.cs" />
+    <Compile Include="Tools\MemberFactory.cs" />
+    <Compile Include="Tools\MethodCacheKey.cs" />
+    <Compile Include="Tools\MethodCaller.cs" />
+    <Compile Include="Tools\Property.cs" />
+    <Compile Include="Tools\ReflectionUtilities.cs" />
     <Compile Include="Tools\Roll.cs" />
   </ItemGroup>
   <ItemGroup>

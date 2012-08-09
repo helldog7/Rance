@@ -119,6 +119,7 @@ namespace Rance.Battle
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
             var total战果 = 0;
 
             foreach (var target in 环境.目标List)

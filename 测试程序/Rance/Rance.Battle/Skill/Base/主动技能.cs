@@ -7,7 +7,10 @@ namespace Rance.Battle
 {
     public abstract class 主动技能 : 技能
     {
-        public abstract void Excute(技能环境 环境);
+        public virtual void Excute(技能环境 环境) 
+        {
+            环境.施放者.是否准备 = false;
+        }
 
         public List<角色> 准备技能目标List { get; set; }
 

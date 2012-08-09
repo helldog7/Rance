@@ -10,7 +10,15 @@ namespace Rance.Battle
     {
         private 战场 teamA战场;
 
-        public static 角色 Create(string name, string 兵种, int 攻, int 防, int 智, int 速, int 行动点, int 兵力, int 最大兵力, string 基础攻击技能, string 技能1, string 技能2, string 被动技能, string 特殊技能)
+        public 战场 Get战场(bool isTeamA) 
+        {
+            if (isTeamA)
+                return teamA战场;
+            else
+                return teamA战场.反转();
+        }
+
+        public static 角色 Create(string name, string 兵种, int 攻, int 防, int 智, int 速, int 行动点, int 兵力, int 最大兵力, int 排,int 列, string 基础攻击技能, string 技能1, string 技能2, string 被动技能, string 特殊技能)
         {
             角色 角色 = new 角色()
             {
@@ -26,7 +34,9 @@ namespace Rance.Battle
                 行动点 = 行动点,
                 最大行动点 = 行动点,
                 兵力 = 兵力,
-                最大兵力 = 最大兵力
+                最大兵力 = 最大兵力,
+                排 = 排,
+                列 = 列
             };
             switch (兵种)
             {
@@ -65,16 +75,18 @@ namespace Rance.Battle
                     break;
             }
 
-            if (基础攻击技能 != null)
+            if (!string.IsNullOrEmpty(基础攻击技能))
                 角色.基础攻击技能 = create技能(基础攻击技能) as 主动技能;
-            if (技能1 != null)
+            if (!string.IsNullOrEmpty(技能1))
                 角色.技能1 = create技能(技能1) as 主动技能;
-            if (技能2 != null)
+            if (!string.IsNullOrEmpty(技能2))
                 角色.技能2 = create技能(技能2) as 主动技能;
-            if (被动技能 != null)
+            if (!string.IsNullOrEmpty(被动技能))
                 角色.被动技能 = create技能(被动技能) as 被动技能;
-            if (特殊技能 != null)
+            if (!string.IsNullOrEmpty(特殊技能))
                 角色.特殊技能 = create技能(特殊技能) as 主动技能;
+
+            角色.待机 = 待机.Instance;
 
 
             return 角色;
@@ -89,10 +101,14 @@ namespace Rance.Battle
         public void Init(队伍 teamA, 队伍 teamB, 战地类型 战地类型)
         {
             teamA战场 = new 战场();
-            teamA战场.当前回合数 = 1;
+            teamA战场.当前回合 = 1;
             teamA战场.最大回合数 = 30;
             teamA战场.己方角色List = teamA.成员List;
+            foreach (var 角色 in teamA.成员List)
+                角色.IsTeamA = true;
             teamA战场.敌方角色List = teamB.成员List;
+            foreach (var 角色 in teamB.成员List)
+                角色.IsTeamA = false;
             teamA战场.己方队伍名称 = teamA.Name;
             teamA战场.敌方队伍名称 = teamB.Name;
             switch (战地类型)
@@ -193,7 +209,7 @@ namespace Rance.Battle
             return 行动者;
         }
 
-        public void Action(角色 角色, string action, List<角色> targetList)
+        public List<ActionResult> Action(角色 角色, string action, List<角色> targetList)
         {
             if (this.teamA战场.行动顺序.List[0] != 角色)
                 throw new Exception("不是这个角色的行动轮");
@@ -252,9 +268,12 @@ namespace Rance.Battle
                 }
             }
 
-            if (teamA战场.当前回合数 >= teamA战场.最大回合数)
+            if (角色.行动点 == 0)
+                角色.是否完结 = true;
+
+            if (teamA战场.当前回合 >= teamA战场.最大回合数)
             {
-                teamA战场.当前回合数 = teamA战场.最大回合数;
+                teamA战场.当前回合 = teamA战场.最大回合数;
                 teamA战场.IsEnd = true;
             }
 
@@ -284,6 +303,11 @@ namespace Rance.Battle
                 if (isAllDead)
                     teamA战场.IsEnd = true;
             }
+
+            if (!teamA战场.己方角色List.Contains(角色))
+                teamA战场.反转Save();
+
+            return 技能环境.ResultList;
         }
 
         public List<战斗结果> 战斗结算() 
