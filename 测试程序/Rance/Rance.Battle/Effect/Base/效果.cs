@@ -9,6 +9,8 @@ namespace Rance.Battle
     {
         public 持续类型 持续类型 { get; set; }
 
+        public int 回合数;
+
         public string Name
         {
             get

@@ -17,5 +17,13 @@ namespace Rance.Battle
             this.消耗行动点 = 1;
             this.打断系数 = 100;
         }
+
+        public override void Excute(技能环境 环境)
+        {
+            base.Excute(环境);
+            int 金钱 = Convert.ToInt32(环境.施放者.实际智 * 30);
+            环境.战场.己方收获金钱 += 金钱;
+            环境.战场.敌方收获金钱 -= 金钱;
+        }
     }
 }

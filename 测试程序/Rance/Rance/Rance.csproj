@@ -70,19 +70,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Win\Win_FightSetting.xaml.cs">
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Team.cs" />
+    <Compile Include="View\Win\Win_FightSetting.xaml.cs">
       <DependentUpon>Win_FightSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Win\Win_Role.xaml.cs">
+    <Compile Include="View\Win\Win_Role.xaml.cs">
       <DependentUpon>Win_Role.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Win\Win_RoleMgt.xaml.cs">
+    <Compile Include="View\Win\Win_RoleMgt.xaml.cs">
       <DependentUpon>Win_RoleMgt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Win\Win_TeamMgt.xaml.cs">
+    <Compile Include="View\Win\Win_Team.xaml.cs">
+      <DependentUpon>Win_Team.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Win\Win_TeamMgt.xaml.cs">
       <DependentUpon>Win_TeamMgt.xaml</DependentUpon>
     </Compile>
-    <Page Include="Win\Win_FightSetting.xaml">
+    <Page Include="View\Win\Win_FightSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,15 +103,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Win\Win_Role.xaml">
+    <Page Include="View\Win\Win_Role.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Win\Win_RoleMgt.xaml">
+    <Page Include="View\Win\Win_RoleMgt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Win\Win_TeamMgt.xaml">
+    <Page Include="View\Win\Win_Team.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Win\Win_TeamMgt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,9 +160,7 @@
       <Name>Rance.Battle</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -25,7 +25,7 @@ namespace Rance.Battle
         public int 最大兵力 { get; set; }
         public int 兵力 { get; set; }
 
-        public int 顺序值 { get; set; }
+        public decimal 顺序值 { get; set; }
 
         public int 最大行动点 { get; set; }
         public int 行动点 { get; set; }
@@ -78,8 +78,9 @@ namespace Rance.Battle
 
         public 被动技能 被动技能 { get; set; }
         public 主动技能 基础攻击技能 { get; set; }
-        public 主动技能 攻击技能 { get; set; }
-        public 主动技能 辅助技能 { get; set; }
+        public 主动技能 技能1 { get; set; }
+        public 主动技能 技能2 { get; set; }
+        public 技能 特殊技能 { get; set; }
 
         public int 排 { get; set; }
         public int 列 { get; set; }

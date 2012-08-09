@@ -24,18 +24,18 @@ namespace Rance.Battle
             Random r = new Random(DateTime.Now.Millisecond);
             foreach (var 角色 in list)
             {
-                int min = Convert.ToInt32((17 - 角色.实际速) * 10);
-                int max = Convert.ToInt32((20 - 角色.实际速) * 10);
-                角色.顺序值 = r.Next(min, max);
+                int min = Convert.ToInt32((17 - 角色.实际速) * 100);
+                int max = Convert.ToInt32((20 - 角色.实际速) * 100);
+                角色.顺序值 = r.Next(min, max) / 10m;
             }
         }
 
         public void 行动(角色 角色, 主动技能 技能)
         {
             Random r = new Random(DateTime.Now.Millisecond);
-            int min = Convert.ToInt32((15 - 角色.实际速) * 3);
-            int max = Convert.ToInt32((18 - 角色.实际速) * 3);
-            角色.顺序值 += 技能.技能速度 + r.Next(min, max);
+            int min = Convert.ToInt32((15 - 角色.实际速) * 30);
+            int max = Convert.ToInt32((18 - 角色.实际速) * 30);
+            角色.顺序值 += 技能.技能速度 + r.Next(min, max)/10m;
 
         }
 
