@@ -9,6 +9,7 @@ namespace Rance
     {
         public int 最大回合数 { get; set; }
         public UI行动顺序 行动顺序 { get; set; }
+        public bool 是否结束 { get; set; }
 
         private int _当前回合;
         public int 当前回合
@@ -55,6 +56,16 @@ namespace Rance
         public List<UI角色> TeamBList;
 
         public UI角色 Current角色 { get; set; }
+
+        private UI角色 select角色;
+        public UI角色 Select角色
+        {
+            get { return select角色; }
+            set
+            {
+                if (select角色 != value) { select角色 = value; SendPropertyChanged("Select角色"); }
+            }
+        }
 
         #region Team A人物
 

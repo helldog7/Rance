@@ -10,7 +10,7 @@ namespace Rance.Battle
     {
         private 战场 teamA战场;
 
-        public 战场 Get战场(bool isTeamA) 
+        public 战场 Get战场(bool isTeamA)
         {
             if (isTeamA)
                 return teamA战场;
@@ -18,7 +18,7 @@ namespace Rance.Battle
                 return teamA战场.反转();
         }
 
-        public static 角色 Create(string name, string 兵种, int 攻, int 防, int 智, int 速, int 行动点, int 兵力, int 最大兵力, int 排,int 列, string 基础攻击技能, string 技能1, string 技能2, string 被动技能, string 特殊技能)
+        public static 角色 Create(string name, string 兵种, int 攻, int 防, int 智, int 速, int 行动点, int 兵力, int 最大兵力, int 排, int 列, string 基础攻击技能, string 技能1, string 技能2, string 被动技能, string 特殊技能)
         {
             角色 角色 = new 角色()
             {
@@ -221,22 +221,50 @@ namespace Rance.Battle
 
             技能环境 技能环境 = createEnvironment(角色, teamA战场.己方角色List.Contains(角色), targetList);
 
-            if (角色.基础攻击技能.Name == action)
+            if (角色.基础攻击技能 != null && 角色.基础攻击技能.Name == action)
             {
                 角色.基础攻击技能.Excute(技能环境);
                 角色.行动点 -= 角色.基础攻击技能.消耗行动点;
             }
-            else if (角色.技能1.Name == action)
+            if (角色.技能1 != null)
             {
-                角色.技能1.Excute(技能环境);
-                角色.行动点 -= 角色.技能1.消耗行动点;
+                if (角色.技能1.Name == action)
+                {
+                    角色.技能1.Excute(技能环境);
+                    角色.行动点 -= 角色.技能1.消耗行动点;
+                }
+                else if (角色.技能1 is 准备技能)
+                {
+                    准备技能 准备技能 = (准备技能)角色.技能1;
+                    if (准备技能.准备后执行技能.Name == action)
+                    {
+                        准备技能.准备后执行技能.Excute(技能环境);
+
+                        准备技能.准备技能目标List = null;
+                        准备技能.准备后执行技能 = null;
+                    }
+                }
             }
-            else if (角色.技能2.Name == action)
+            if (角色.技能2 != null)
             {
-                角色.技能2.Excute(技能环境);
-                角色.行动点 -= 角色.技能2.消耗行动点;
+                if (角色.技能2.Name == action)
+                {
+                    角色.技能2.Excute(技能环境);
+                    角色.行动点 -= 角色.技能2.消耗行动点;
+                }
+                else if (角色.技能2 is 准备技能)
+                {
+                    准备技能 准备技能 = (准备技能)角色.技能2;
+                    if (准备技能.准备后执行技能.Name == action)
+                    {
+                        准备技能.准备后执行技能.Excute(技能环境);
+
+                        准备技能.准备技能目标List = null;
+                        准备技能.准备后执行技能 = null;
+                    }
+                }
             }
-            else if (角色.特殊技能.Name == action)
+            if (角色.特殊技能 != null && 角色.特殊技能.Name == action)
             {
                 if (角色.特殊技能 is 主动技能)
                 {
@@ -244,6 +272,11 @@ namespace Rance.Battle
                     技能.Excute(技能环境);
                     角色.行动点 -= 技能.消耗行动点;
                 }
+            }
+            if (action == "待机")
+            {
+                角色.待机.Excute(技能环境);
+                角色.行动点 -= 角色.待机.消耗行动点;
             }
 
             if (角色.行动点 < 0)
@@ -257,9 +290,9 @@ namespace Rance.Battle
             if (teamA战场.战场修正 < 常量.最小战场修正)
                 teamA战场.战场修正 = 常量.最小战场修正;
 
-            foreach (var 效果 in 角色.效果List.ToArray()) 
+            foreach (var 效果 in 角色.效果List.ToArray())
             {
-                if (效果.持续类型 == 持续类型.一回合) 
+                if (效果.持续类型 == 持续类型.一回合)
                 {
                     if (效果.回合数 == 0)
                         效果.回合数++;
@@ -278,7 +311,7 @@ namespace Rance.Battle
             }
 
             bool isAllDead = true;
-            foreach (var item in teamA战场.己方角色List) 
+            foreach (var item in teamA战场.己方角色List)
             {
                 if (!item.是否败走)
                 {
@@ -304,13 +337,18 @@ namespace Rance.Battle
                     teamA战场.IsEnd = true;
             }
 
+            技能环境.战场.当前回合++;
+            if (teamA战场.当前回合 >= teamA战场.最大回合数)
+                teamA战场.IsEnd = true;
+
             if (!teamA战场.己方角色List.Contains(角色))
                 teamA战场.反转Save();
+
 
             return 技能环境.ResultList;
         }
 
-        public List<战斗结果> 战斗结算() 
+        public List<战斗结果> 战斗结算()
         {
             if (!teamA战场.IsEnd)
                 throw new Exception("战斗还没结束");
@@ -344,6 +382,11 @@ namespace Rance.Battle
             else
                 isTeamAWin = teamA战场.战果 > 0;
 
+            teamA战斗结果.角色List = teamA战场.己方角色List;
+            teamB战斗结果.角色List = teamA战场.敌方角色List;
+            teamA战斗结果.回复兵力List = new List<int>();
+            teamB战斗结果.回复兵力List = new List<int>();
+
             teamA战斗结果.Win = isTeamAWin;
             teamA战斗结果.角色List = teamA战场.己方角色List;
             foreach (var 角色 in teamA战场.己方角色List)
@@ -353,7 +396,7 @@ namespace Rance.Battle
                     teamA战斗结果.回复兵力List.Add(0);
                     continue;
                 }
-                else 
+                else
                 {
                     int value = Convert.ToInt32(角色.最大兵力 * 常量.战斗后回复系数 / 100m);
                     if (value + 角色.兵力 > 角色.最大兵力)
@@ -363,6 +406,7 @@ namespace Rance.Battle
                 }
             }
 
+            
             foreach (var 角色 in teamA战场.己方角色List)
             {
                 if (!角色.是否败走)
@@ -381,13 +425,13 @@ namespace Rance.Battle
                 }
             }
 
-            teamA战斗结果.Win = !isTeamAWin;
-            teamA战斗结果.角色List = teamA战场.敌方角色List;
+            teamB战斗结果.Win = !isTeamAWin;
+            teamB战斗结果.角色List = teamA战场.敌方角色List;
             foreach (var 角色 in teamA战场.敌方角色List)
             {
                 if (角色.是否败走)
                 {
-                    teamA战斗结果.回复兵力List.Add(0);
+                    teamB战斗结果.回复兵力List.Add(0);
                     continue;
                 }
                 else
@@ -417,6 +461,12 @@ namespace Rance.Battle
                     }
                 }
             }
+
+            for (int i = 0; i < teamA战场.己方角色List.Count; i++)
+                teamA战场.己方角色List[i].兵力 += teamA战斗结果.回复兵力List[i];
+
+            for (int i = 0; i < teamA战场.敌方角色List.Count; i++)
+                teamA战场.敌方角色List[i].兵力 += teamB战斗结果.回复兵力List[i];
 
             return new List<战斗结果>() { teamA战斗结果, teamB战斗结果 };
         }

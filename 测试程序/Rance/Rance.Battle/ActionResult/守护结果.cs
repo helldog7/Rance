@@ -17,7 +17,7 @@ namespace Rance.Battle
         public override string ToString()
         {
 
-            return string.Format("{0} 对{4}使用 {1},获得 {2}点守护率,{3}点全体守护率!", 角色, 技能, 守护率, 全体守护率, 角色2);
+            return string.Format("{0} 对{4}使用 {1},获得 {2}点守护率,{3}点全体守护率!", 角色.Name, 技能.Name, 守护率, 全体守护率, 角色2.Name);
         }
     }
 }

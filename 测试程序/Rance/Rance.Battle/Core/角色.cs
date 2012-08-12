@@ -191,5 +191,10 @@ namespace Rance.Battle
             }
         }
         #endregion
+
+        public override string ToString()
+        {
+            return Name + " " + 顺序值.ToString();
+        }
     }
 }

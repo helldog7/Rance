@@ -16,6 +16,7 @@ namespace Rance.Battle
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
             
             环境.施放者.护盾 = true;
 

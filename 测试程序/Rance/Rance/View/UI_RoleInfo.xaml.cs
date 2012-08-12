@@ -27,7 +27,9 @@ namespace Rance.View
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (DataContext != null)
-                this.Visibility = System.Windows.Visibility.Visible;
+                this.mainGrid.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.mainGrid.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }

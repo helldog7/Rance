@@ -14,7 +14,7 @@ namespace Rance.Battle
 
         public override string ToString()
         {
-            return string.Format("{0} 对 {1} 使用 {2},解除 {3}赋予!", 角色1.Name, 角色2.Name, 技能, Type);
+            return string.Format("{0} 对 {1} 使用 {2},解除 {3}赋予!", 角色1.Name, 角色2.Name, 技能.Name, Type);
         }
     }
 }

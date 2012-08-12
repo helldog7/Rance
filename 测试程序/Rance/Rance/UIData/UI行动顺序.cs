@@ -33,7 +33,7 @@ namespace Rance
             get { return _行动者3; }
             set
             {
-                if (_行动者3 != value) { _行动者3 = value; SendPropertyChanged("_行动者3"); }
+                if (_行动者3 != value) { _行动者3 = value; SendPropertyChanged("行动者3"); }
             }
         }
 

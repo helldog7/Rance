@@ -18,9 +18,9 @@ namespace Rance.Battle
         public virtual decimal Get基础伤害(角色 角色1, 角色 角色2)
         {
             if (物理系)
-                return 角色1.实际兵力 * 角色1.兵种.攻 * 伤害系数;
+                return 角色1.实际兵力 * 角色1.兵种.攻 * 常量.物理伤害系数 * 伤害系数 / 10;
             else
-                return 角色1.实际兵力 * 角色1.兵种.智 * 0.7m * 伤害系数;
+                return 角色1.实际兵力 * 角色1.兵种.智 * 常量.法术伤害系数 * 伤害系数 / 10;
         }
 
         public virtual decimal Get兵种减伤(角色 角色,int 战场修正)
@@ -36,16 +36,16 @@ namespace Rance.Battle
             if (物理系)
             {
                 var result = (角色1.实际攻 - 角色2.实际防) * 常量.武将减伤系数 + 1m;
-                if (result < -1m)
-                    result = -1m;
+                if (result < 0m)
+                    result = 0m;
 
                 return result;
             }
             else
             {
                 var result = (角色1.实际智 - 角色2.实际智) * 常量.武将减伤系数 + 1m;
-                if (result < -1m)
-                    result = -1m;
+                if (result < 0m)
+                    result = 0m;
 
                 return result;
             }
@@ -89,7 +89,7 @@ namespace Rance.Battle
 
         public virtual int 结算战果(int 伤害, 角色 角色)
         {
-            var i1 = Convert.ToInt32(Convert.ToDecimal(伤害) / 角色.最大兵力 * 100);
+            var i1 = Convert.ToInt32(Convert.ToDecimal(伤害) / 角色.最大兵力 * 常量.战果系数);
             var i2 = 0;
             if (角色.是否败走)
                 i2 = 200;
@@ -108,9 +108,8 @@ namespace Rance.Battle
             resultList.AddRange(temp);
             temp = (from q in list
                         where q.全体守护率 > 0 &&
-                              q.列 != 角色.列 &&
                               q != 角色
-                        orderby q.列, q.排
+                        orderby q.列 descending, q.排
                         select q);
             resultList.AddRange(temp);
 
@@ -120,10 +119,14 @@ namespace Rance.Battle
         public override void Excute(技能环境 环境)
         {
             base.Excute(环境);
+            
             var total战果 = 0;
 
             foreach (var target in 环境.目标List)
             {
+                if (target.是否败走)
+                    continue;
+
                 攻击结果 攻击结果 = new Battle.攻击结果()
                 {
                     角色1 = 环境.施放者,
@@ -146,16 +149,20 @@ namespace Rance.Battle
                             {
                                 目标 = 守护者;
                                 守护者.守护率 -= 40;
+                                if (守护者.守护率 < 0)
+                                    守护者.守护率 = 0;
                                 攻击结果.守护角色 = 守护者;
                                 break;
                             }
                         }
                         else
                         {
-                            if (Roll.Hit(守护者.守护率))
+                            if (Roll.Hit(守护者.全体守护率))
                             {
                                 目标 = 守护者;
                                 守护者.全体守护率 -= 40;
+                                if (守护者.全体守护率 < 0)
+                                    守护者.全体守护率 = 0;
                                 攻击结果.守护角色 = 守护者;
                                 break;
                             }
@@ -185,7 +192,7 @@ namespace Rance.Battle
                 var 战果 = 结算战果(伤害, 目标);
                 total战果 += 战果;
                 攻击结果.战果 = 战果;
-
+               
 
                 //结算打断
                 if (target.准备技能 != null)
@@ -206,19 +213,20 @@ namespace Rance.Battle
                     };
                     环境.ResultList.Add(反击结果);
 
-                    var 反击伤害 = Convert.ToInt32(单角色伤害结算(目标, 环境.施放者, true, 环境.战场.战场修正) * 常量.反击比率);
+                    攻击技能 反击 = new 攻击技能();
+                    var 反击伤害 = Convert.ToInt32(反击.单角色伤害结算(目标, 环境.施放者, true, 环境.战场.战场修正) * 常量.反击比率);
                     if (环境.施放者.兵力 < 反击伤害)
                         反击伤害 = 环境.施放者.兵力;
-                    反击结果.伤害 = 伤害;
+                    反击结果.伤害 = 反击伤害;
 
                     if (环境.施放者.护盾)
                     {
-                        伤害 = 0;
+                        反击伤害 = 0;
                         环境.施放者.护盾 = false;
                         反击结果.是否被护盾抵挡 = true;
                     }
 
-                    战果 = 结算战果(反击伤害, 环境.施放者);
+                    战果 = 反击.结算战果(反击伤害, 环境.施放者);
                     total战果 -= 战果;
                     反击结果.战果 = 战果;
 
@@ -235,7 +243,9 @@ namespace Rance.Battle
                
             }
 
-            环境.战场.行动顺序.行动(环境.施放者, this);
+            环境.战场.战果 += total战果;
+
+            
         }
 
         #endregion

@@ -10,13 +10,15 @@ namespace Rance.Battle
         public int Level = 4;
         public 单军战术()
         {
-            this.技能速度 = 140;
+            this.技能速度 = 130;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.己方任一;
         }
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
+
             List<int> list = new List<int>();
             int maxItem = 4;
             int value = 环境.施放者.智 / 2;

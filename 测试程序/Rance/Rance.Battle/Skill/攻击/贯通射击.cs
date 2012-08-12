@@ -11,7 +11,7 @@ namespace Rance.Battle
         {
             this.技能目标 = Battle.技能目标.一排全体;
             this.可被守护 = true;
-            this.技能速度 = 200;
+            this.技能速度 = 180;
             this.能否被反击 = false;
             this.物理系 = true;
             this.消耗行动点 = 2;

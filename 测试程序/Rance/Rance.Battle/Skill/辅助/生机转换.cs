@@ -9,13 +9,15 @@ namespace Rance.Battle
     {
         public 生机转换()
         {
-            this.技能速度 = 110;
+            this.技能速度 = 140;
             this.消耗行动点 = 2;
             this.技能目标 = Battle.技能目标.己方任一;
         }
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
+
             int value = 环境.目标List[0].最大行动点 - 环境.目标List[0].行动点;
             value = value > 1 ? 1 : value;
 

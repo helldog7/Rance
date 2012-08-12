@@ -39,7 +39,7 @@ namespace Rance.Battle
     {
         public override decimal Get武将加成(角色 角色1, 角色 角色2)
         {
-            var value = base.Get基础伤害(角色1, 角色2);
+            var value = base.Get武将加成(角色1, 角色2);
             if (角色2.兵种.Name == "盾兵")
                 value *= 2;
             return value;
@@ -50,7 +50,7 @@ namespace Rance.Battle
     {
         public override decimal Get武将加成(角色 角色1, 角色 角色2)
         {
-            var value = base.Get基础伤害(角色1, 角色2);
+            var value = base.Get武将加成(角色1, 角色2);
             if (角色2.兵种.Name == "剑士")
                 value *= 2;
             return value;

@@ -9,11 +9,12 @@ namespace Rance.Battle
     {
         public 待机()
         {
-            this.技能速度 = 40;
+            this.技能速度 = 50;
             this.消耗行动点 = 0;
             this.技能目标 = Battle.技能目标.自己;
         }
 
         public static 待机 Instance = new 待机();
+
     }
 }

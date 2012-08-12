@@ -19,12 +19,6 @@ namespace Rance
     /// </summary>
     public partial class Us_Role : UserControl
     {
-        private UI角色 _角色;
-        public UI角色 角色
-        {
-            get { return _角色; }
-            set { _角色 = value; this.DataContext = value; }
-        }
         public Us_Role()
         {
             InitializeComponent();
@@ -33,7 +27,18 @@ namespace Rance
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (DataContext != null)
-                this.Visibility = System.Windows.Visibility.Visible;
+                this.mainGrid.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.mainGrid.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (DataContext != null)
+            {
+                UI角色 ui角色 = (UI角色)DataContext;
+                ui角色.UI战斗.Select角色 = ui角色;
+            }
         }
     }
 }

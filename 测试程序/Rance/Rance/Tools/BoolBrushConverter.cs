@@ -13,15 +13,15 @@ namespace Rance.Tools
         {
             bool effective = (bool)value;
             if (effective)
-                return new SolidColorBrush(Colors.Gray);
-            else
                 return new SolidColorBrush(Colors.Red);
+            else
+                return new SolidColorBrush(Colors.Gray);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Brush brush = (Brush)value;
-            if (brush == new SolidColorBrush(Colors.Gray))
+            if (brush == new SolidColorBrush(Colors.Red))
                 return true;
             else
                 return false;

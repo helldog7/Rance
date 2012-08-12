@@ -19,7 +19,7 @@ namespace Rance.Battle
         {
             Name = "剑士",
             攻 = 8,
-            防 = 4,
+            防 = 5,
             智 = 4,
             速 = 6,
             能否反击 = true
@@ -31,7 +31,7 @@ namespace Rance.Battle
             攻 = 5,
             防 = 9,
             智 = 4,
-            速 = 6,
+            速 = 6.2m,
             能否反击 = true
         };
 
@@ -39,16 +39,16 @@ namespace Rance.Battle
         {
             Name = "弓兵",
             攻 = 6,
-            防 = 4,
+            防 = 3,
             智 = 6,
-            速 = 7
+            速 = 6.2m
         };
 
         public static 兵种 军师 = new 兵种()
         {
             Name = "军师",
             攻 = 4,
-            防 = 4,
+            防 = 3,
             智 = 9,
             速 = 5
         };
@@ -57,9 +57,9 @@ namespace Rance.Battle
         {
             Name = "忍者",
             攻 = 7,
-            防 = 5,
+            防 = 4,
             智 = 4,
-            速 = 9,
+            速 = 8,
             能否反击 = true
         };
 
@@ -79,23 +79,23 @@ namespace Rance.Battle
             攻 = 9,
             防 = 4,
             智 = 4,
-            速 = 8
+            速 = 8.4m
         };
 
         public static 兵种 巫女 = new 兵种()
         {
             Name = "巫女",
             攻 = 5,
-            防 = 4,
+            防 = 3,
             智 = 8,
-            速 = 6
+            速 = 5
         };
 
         public static 兵种 阴阳 = new 兵种()
         {
             Name = "阴阳",
             攻 = 3,
-            防 = 4,
+            防 = 3,
             智 = 8,
             速 = 5
         };
@@ -104,9 +104,9 @@ namespace Rance.Battle
         {
             Name = "骑兵",
             攻 = 5,
-            防 = 5,
+            防 = 4,
             智 = 5,
-            速 = 7,
+            速 = 6,
             能否反击 = true
         };
 
@@ -114,9 +114,9 @@ namespace Rance.Battle
         {
             Name = "炮兵",
             攻 = 8,
-            防 = 5,
+            防 = 4,
             智 = 4,
-            速 = 5,
+            速 = 5.5m,
         };
     }
 }

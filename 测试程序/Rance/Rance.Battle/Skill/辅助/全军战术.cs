@@ -10,13 +10,15 @@ namespace Rance.Battle
         public int 兵力系数 = 250;
         public 全军战术()
         {
-            this.技能速度 = 140;
+            this.技能速度 = 130;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.己方全体;
         }
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
+
             List<随机赋予Item> list = new List<随机赋予Item>();
             int maxItem = 环境.战场.己方角色List.Count * 4;
             int value = 环境.施放者.智 / 3 + 环境.施放者.兵力 / 兵力系数;

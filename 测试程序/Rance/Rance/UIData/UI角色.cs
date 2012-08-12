@@ -11,6 +11,7 @@ namespace Rance
         public UI战斗 UI战斗;
 
         public string Name { get; set; }
+        public string 兵种 { get; set; }
         public int 攻 { get; set; }
         public int 防 { get; set; }
         public int 智 { get; set; }
@@ -177,14 +178,19 @@ namespace Rance
             get 
             {
                 if (守护率 > 0)
-                    return string.Format("守护率:{0}", 守护率);
+                    return string.Format("{0}%", 守护率);
                 if(全体守护率 > 0)
-                    return string.Format("守护率:{0}", 守护率);
+                    return string.Format("全体{0}%", 全体守护率);
 
                 return "";
             }
         }
 
         public List<UI技能> 技能List = new List<UI技能>();
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

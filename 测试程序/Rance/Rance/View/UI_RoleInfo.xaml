@@ -5,21 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="122" d:DesignWidth="252"
-             Visibility="Hidden" DataContextChanged="UserControl_DataContextChanged">
-    <Grid>
-        <Label Content="{Binding Name}" Height="28" HorizontalAlignment="Left" Margin="23,12,0,0" Name="label1" VerticalAlignment="Top" />
-        <Label Content="{Binding 兵种}" Height="28" HorizontalAlignment="Left" Margin="128,12,0,0" Name="label2" VerticalAlignment="Top" />
-        <Label Content="攻" Height="28" Margin="21,46,0,0" Name="label3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22" />
-        <Label Content="{Binding 攻}" Height="28" HorizontalAlignment="Left" Margin="49,46,0,0" Name="label4" VerticalAlignment="Top" />
-        <Label Content="防" Height="28" HorizontalAlignment="Left" Margin="81,46,0,0" Name="label5" VerticalAlignment="Top" Width="22" />
-        <Label Content="{Binding 防}" Height="28" Margin="109,46,0,0" Name="label6" VerticalAlignment="Top" HorizontalAlignment="Left" Width="10" />
-        <Label Content="智" Height="28" Margin="136,46,91,0" Name="label7" VerticalAlignment="Top" />
-        <Label Content="{Binding 智}" Height="28" Margin="164,46,0,0" Name="label8" VerticalAlignment="Top" HorizontalAlignment="Left" Width="10" />
-        <Label Content="速" Height="28" HorizontalAlignment="Left" Margin="191,46,0,0" Name="label9" VerticalAlignment="Top" Width="22" />
-        <Label Content="{Binding 速}" Height="28" Margin="219,46,0,0" Name="label10" VerticalAlignment="Top" HorizontalAlignment="Left" Width="10" />
-        <Label Content="行动力" Height="28" HorizontalAlignment="Left" Margin="21,80,0,0" Name="label11" VerticalAlignment="Top" Width="51" />
-        <Label Content="{Binding 行动力Text}" Height="28" HorizontalAlignment="Left" Margin="70,80,0,0" Name="label12" VerticalAlignment="Top" />
-        <Label Content="兵力" Height="28" HorizontalAlignment="Left" Margin="128,80,0,0" Name="label13" VerticalAlignment="Top" Width="38" />
-        <Label Content="{Binding 兵力Text}" Height="28" HorizontalAlignment="Left" Margin="164,80,0,0" Name="label14" VerticalAlignment="Top" />
+             DataContextChanged="UserControl_DataContextChanged" BorderBrush="Gray" BorderThickness="2">
+    <Grid Visibility="Hidden" Name="mainGrid">
+        <Label Content="{Binding Name}" Height="28" HorizontalAlignment="Left" Margin="23,6,0,0" Name="label1" VerticalAlignment="Top" FontSize="14" FontWeight="Heavy" />
+        <Label Content="{Binding 兵种}" Height="28" HorizontalAlignment="Left" Margin="128,6,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="攻" Height="28" Margin="21,40,0,0" Name="label3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22" />
+        <Label Content="{Binding 攻}" Height="28" HorizontalAlignment="Left" Margin="49,40,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="防" Height="28" HorizontalAlignment="Left" Margin="81,40,0,0" Name="label5" VerticalAlignment="Top" Width="22" />
+        <Label Content="{Binding 防}" Height="28" Margin="109,40,0,0" Name="label6" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Label Content="智" Height="28" Margin="136,40,91,0" Name="label7" VerticalAlignment="Top" />
+        <Label Content="{Binding 智}" Height="28" Margin="164,40,0,0" Name="label8" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Label Content="速" Height="28" Margin="191,40,0,0" Name="label9" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22" />
+        <Label Content="{Binding 速}" Height="28" Margin="219,40,0,0" Name="label10" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Label Content="行动力" Height="28" HorizontalAlignment="Left" Margin="21,74,0,0" Name="label11" VerticalAlignment="Top" Width="51" />
+        <Label Content="{Binding 行动力Text}" Height="28" HorizontalAlignment="Left" Margin="70,74,0,0" Name="label12" VerticalAlignment="Top" />
+        <Label Content="兵力" Height="28" HorizontalAlignment="Left" Margin="128,74,0,0" Name="label13" VerticalAlignment="Top" Width="38" />
+        <Label Content="{Binding 兵力Text}" Height="28" HorizontalAlignment="Left" Margin="164,74,0,0" Name="label14" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

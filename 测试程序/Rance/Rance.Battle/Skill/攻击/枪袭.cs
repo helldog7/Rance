@@ -11,7 +11,7 @@ namespace Rance.Battle
         public 枪袭()
         {
             this.可被守护 = true;
-            this.技能速度 = 160;
+            this.技能速度 = 145;
             this.能否被反击 = true;
             this.物理系 = true;
             this.技能目标 = Battle.技能目标.最前列任一;

@@ -17,9 +17,9 @@ namespace Rance.Battle
         public override string ToString()
         {
             if (技能 != null)
-                return string.Format("{0} 对 {1} 使用 {2},回复 {3}兵力!",角色1,角色2,技能,回复量);
+                return string.Format("{0} 对 {1} 使用 {2},回复 {3}兵力!", 角色1.Name, 角色2.Name, 技能.Name, 回复量);
             else
-                return string.Format("{0} 使 {1},回复 {2}兵力!",效果, 角色2, 回复量);
+                return string.Format("{0} 使 {1},回复 {2}兵力!", 效果.Name, 角色2.Name, 回复量);
         }
     }
 }

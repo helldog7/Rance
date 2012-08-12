@@ -17,6 +17,8 @@ namespace Rance.Battle
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
+
             环境.战场.战果 += Convert.ToInt32(环境.施放者.实际智 * 基数);
             环境.ResultList.Add(new 战果结果()
             {

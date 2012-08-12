@@ -28,6 +28,7 @@ namespace Rance
             战斗管理 = new 战斗管理();
             战斗管理.Init(convert(setting.TeamA), convert(setting.TeamB), setting.Type);
             UI战斗 = create(战斗管理.Get战场(true));
+            set行动者();
             this.DataContext = UI战斗;
         }
 
@@ -63,6 +64,7 @@ namespace Rance
                 ui角色.角色 = 角色;
                 ui角色.UI战斗 = UI战斗;
                 ui角色.Name = 角色.Name;
+                ui角色.兵种 = 角色.兵种.Name;
                 ui角色.IsTeamA = true;
                 ui角色.攻 = 角色.攻;
                 ui角色.防 = 角色.防;
@@ -93,13 +95,13 @@ namespace Rance
                 ui角色.最大兵力 = 角色.最大兵力;
 
                 if (角色.基础攻击技能 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.基础攻击技能.Name, 行动点 = 角色.基础攻击技能.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.基础攻击技能.Name, 行动点 = 角色.基础攻击技能.消耗行动点, 技能目标 = 角色.基础攻击技能.技能目标 });
                 if (角色.技能1 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能1.Name, 行动点 = 角色.技能1.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能1.Name, 行动点 = 角色.技能1.消耗行动点, 技能目标 = 角色.技能1.技能目标 });
                 if (角色.技能2 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能2.Name, 行动点 = 角色.技能2.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能2.Name, 行动点 = 角色.技能2.消耗行动点, 技能目标 = 角色.技能2.技能目标 });
                 if (角色.待机 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.待机.Name, 行动点 = 角色.待机.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.待机.Name, 行动点 = 角色.待机.消耗行动点, 技能目标 = 角色.待机.技能目标 });
 
                 copy(角色, ui角色);
                 UI战斗.TeamAList.Add(ui角色);
@@ -111,6 +113,7 @@ namespace Rance
                 ui角色.角色 = 角色;
                 ui角色.UI战斗 = UI战斗;
                 ui角色.Name = 角色.Name;
+                ui角色.兵种 = 角色.兵种.Name;
                 ui角色.IsTeamA = false;
                 ui角色.攻 = 角色.攻;
                 ui角色.防 = 角色.防;
@@ -141,22 +144,104 @@ namespace Rance
                 ui角色.最大兵力 = 角色.最大兵力;
 
                 if (角色.基础攻击技能 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.基础攻击技能.Name, 行动点 = 角色.基础攻击技能.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.基础攻击技能.Name, 行动点 = 角色.基础攻击技能.消耗行动点, 技能目标 = 角色.基础攻击技能.技能目标 });
                 if (角色.技能1 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能1.Name, 行动点 = 角色.技能1.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能1.Name, 行动点 = 角色.技能1.消耗行动点, 技能目标 = 角色.技能1.技能目标 });
                 if (角色.技能2 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能2.Name, 行动点 = 角色.技能2.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.技能2.Name, 行动点 = 角色.技能2.消耗行动点, 技能目标 = 角色.技能2.技能目标 });
                 if (角色.待机 != null)
-                    ui角色.技能List.Add(new UI技能() { Name = 角色.待机.Name, 行动点 = 角色.待机.消耗行动点 });
+                    ui角色.技能List.Add(new UI技能() { Name = 角色.待机.Name, 行动点 = 角色.待机.消耗行动点, 技能目标 = 角色.待机.技能目标 });
 
                 copy(角色, ui角色);
                 UI战斗.TeamBList.Add(ui角色);
             }
 
             UI战斗.行动顺序 = new UI行动顺序();
-            copy(战场.行动顺序, UI战斗.行动顺序);
+            copy(战场.行动顺序, UI战斗.行动顺序, UI战斗);
 
             return UI战斗;
+        }
+
+        private void set行动者()
+        {
+            IsSkilling = false;
+            foreach(var 角色 in UI战斗.TeamAList)
+                角色.行动中 = false;
+            foreach (var 角色 in UI战斗.TeamBList)
+                角色.行动中 = false;
+
+            UI战斗.Current角色 = UI战斗.行动顺序.行动者1;
+            UI战斗.Current角色.行动中 = true;
+
+            btn取消.Visibility = System.Windows.Visibility.Hidden;
+
+            if (UI战斗.Current角色.技能List.Count > 0)
+            {
+                btn技能1.Content = UI战斗.Current角色.技能List[0].ToString();
+                btn技能1.DataContext = UI战斗.Current角色.技能List[0];
+                btn技能1.IsEnabled = true;
+                btn技能1.Visibility = System.Windows.Visibility.Visible;
+
+                if (UI战斗.Current角色.技能List.Count > 1)
+                {
+                    btn技能2.Content = UI战斗.Current角色.技能List[1].ToString();
+                    btn技能2.DataContext = UI战斗.Current角色.技能List[1];
+                    btn技能2.IsEnabled = true;
+                    btn技能2.Visibility = System.Windows.Visibility.Visible;
+
+                    if (UI战斗.Current角色.技能List.Count > 2)
+                    {
+                        btn技能3.Content = UI战斗.Current角色.技能List[2].ToString();
+                        btn技能3.DataContext = UI战斗.Current角色.技能List[2];
+                        btn技能3.IsEnabled = true;
+                        btn技能3.Visibility = System.Windows.Visibility.Visible;
+
+                        if (UI战斗.Current角色.技能List.Count > 3)
+                        {
+                            btn技能4.Content = UI战斗.Current角色.技能List[3].ToString();
+                            btn技能4.DataContext = UI战斗.Current角色.技能List[3];
+                            btn技能4.IsEnabled = true;
+                            btn技能4.Visibility = System.Windows.Visibility.Visible;
+                        }
+                        else
+                        {
+                            btn技能4.Visibility = System.Windows.Visibility.Hidden;
+
+                            btn技能4.DataContext = null;
+                        }
+                    }
+                    else
+                    {
+                        btn技能3.Visibility = System.Windows.Visibility.Hidden;
+                        btn技能4.Visibility = System.Windows.Visibility.Hidden;
+
+                        btn技能3.DataContext = null;
+                        btn技能4.DataContext = null;
+                    }
+                }
+                else
+                {
+                    btn技能2.Visibility = System.Windows.Visibility.Hidden;
+                    btn技能3.Visibility = System.Windows.Visibility.Hidden;
+                    btn技能4.Visibility = System.Windows.Visibility.Hidden;
+
+                    btn技能2.DataContext = null;
+                    btn技能3.DataContext = null;
+                    btn技能4.DataContext = null;
+                }
+            }
+            else
+            {
+                btn技能1.Visibility = System.Windows.Visibility.Hidden;
+                btn技能2.Visibility = System.Windows.Visibility.Hidden;
+                btn技能3.Visibility = System.Windows.Visibility.Hidden;
+                btn技能4.Visibility = System.Windows.Visibility.Hidden;
+
+                btn技能1.DataContext = null;
+                btn技能2.DataContext = null;
+                btn技能3.DataContext = null;
+                btn技能4.DataContext = null;
+            }
         }
 
         private void copy(战场 战场, UI战斗 UI战斗)
@@ -164,6 +249,7 @@ namespace Rance
             UI战斗.当前回合 = 战场.当前回合;
             UI战斗.战果 = 战场.战果;
             UI战斗.战场修正 = 战场.战场修正;
+            UI战斗.是否结束 = 战场.IsEnd;
         }
 
         private void copy(角色 角色, UI角色 ui角色)
@@ -181,38 +267,418 @@ namespace Rance
             ui角色.准备 = 角色.是否准备;
         }
 
-        private void copy(行动顺序 行动顺序, UI行动顺序 UI行动顺序)
+        private void copy(行动顺序 行动顺序, UI行动顺序 UI行动顺序, UI战斗 ui战斗)
         {
-            if (行动顺序.List.Count>0)
-                UI行动顺序.行动者1 = new UI角色() { Name = 行动顺序.List[0].Name, IsTeamA = 行动顺序.List[0].IsTeamA };
+            if (行动顺序.List.Count > 0)
+            {
+                if (行动顺序.List[0].IsTeamA)
+                    UI行动顺序.行动者1 = ui战斗.TeamAList.SingleOrDefault(m => m.角色 == 行动顺序.List[0]);
+                else
+                    UI行动顺序.行动者1 = ui战斗.TeamBList.SingleOrDefault(m => m.角色 == 行动顺序.List[0]);
+            }
             else
                 UI行动顺序.行动者1 = null;
 
             if (行动顺序.List.Count > 1)
-                UI行动顺序.行动者2 = new UI角色() { Name = 行动顺序.List[1].Name, IsTeamA = 行动顺序.List[1].IsTeamA };
+            {
+                if (行动顺序.List[1].IsTeamA)
+                    UI行动顺序.行动者2 = ui战斗.TeamAList.SingleOrDefault(m => m.角色 == 行动顺序.List[1]);
+                else
+                    UI行动顺序.行动者2 = ui战斗.TeamBList.SingleOrDefault(m => m.角色 == 行动顺序.List[1]);
+            }
             else
                 UI行动顺序.行动者2 = null;
 
             if (行动顺序.List.Count > 2)
-                UI行动顺序.行动者3 = new UI角色() { Name = 行动顺序.List[2].Name, IsTeamA = 行动顺序.List[2].IsTeamA };
+            {
+                if (行动顺序.List[2].IsTeamA)
+                    UI行动顺序.行动者3 = ui战斗.TeamAList.SingleOrDefault(m => m.角色 == 行动顺序.List[2]);
+                else
+                    UI行动顺序.行动者3 = ui战斗.TeamBList.SingleOrDefault(m => m.角色 == 行动顺序.List[2]);
+            }
             else
                 UI行动顺序.行动者3 = null;
 
             if (行动顺序.List.Count > 3)
-                UI行动顺序.行动者4 = new UI角色() { Name = 行动顺序.List[3].Name, IsTeamA = 行动顺序.List[3].IsTeamA };
+            {
+                if (行动顺序.List[3].IsTeamA)
+                    UI行动顺序.行动者4 = ui战斗.TeamAList.SingleOrDefault(m => m.角色 == 行动顺序.List[3]);
+                else
+                    UI行动顺序.行动者4 = ui战斗.TeamBList.SingleOrDefault(m => m.角色 == 行动顺序.List[3]);
+            }
             else
                 UI行动顺序.行动者4 = null;
 
             if (行动顺序.List.Count > 4)
-                UI行动顺序.行动者5 = new UI角色() { Name = 行动顺序.List[4].Name, IsTeamA = 行动顺序.List[4].IsTeamA };
+            {
+                if (行动顺序.List[4].IsTeamA)
+                    UI行动顺序.行动者5 = ui战斗.TeamAList.SingleOrDefault(m => m.角色 == 行动顺序.List[4]);
+                else
+                    UI行动顺序.行动者5 = ui战斗.TeamBList.SingleOrDefault(m => m.角色 == 行动顺序.List[4]);
+            }
             else
                 UI行动顺序.行动者5 = null;
 
             if (行动顺序.List.Count > 5)
-                UI行动顺序.行动者6 = new UI角色() { Name = 行动顺序.List[5].Name, IsTeamA = 行动顺序.List[5].IsTeamA };
+            {
+                if (行动顺序.List[5].IsTeamA)
+                    UI行动顺序.行动者6 = ui战斗.TeamAList.SingleOrDefault(m => m.角色 == 行动顺序.List[5]);
+                else
+                    UI行动顺序.行动者6 = ui战斗.TeamBList.SingleOrDefault(m => m.角色 == 行动顺序.List[5]);
+            }
             else
                 UI行动顺序.行动者6 = null;
 
         }
+
+        private bool IsSkilling = false;
+        private UI技能 current技能;
+
+        private void btn技能_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsSkilling)
+                return;
+            IsSkilling = true;
+            Button button = (Button)e.Source;
+            current技能 = (UI技能)button.DataContext;
+
+            if (btn技能1 != button)
+                btn技能1.IsEnabled = false;
+            if (btn技能2 != button)
+                btn技能2.IsEnabled = false;
+            if (btn技能3 != button)
+                btn技能3.IsEnabled = false;
+            if (btn技能4 != button)
+                btn技能4.IsEnabled = false;
+
+            btn取消.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void btn取消_Click(object sender, RoutedEventArgs e)
+        {
+            IsSkilling = false;
+            if (btn技能1.DataContext != null)
+                btn技能1.IsEnabled = true;
+            if (btn技能2.DataContext != null)
+                btn技能2.IsEnabled = true;
+            if (btn技能3.DataContext != null)
+                btn技能3.IsEnabled = true;
+            if (btn技能4.DataContext != null)
+                btn技能4.IsEnabled = true;
+
+            btn取消.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void us_Role_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!IsSkilling)
+                return;
+            Us_Role usRole = (Us_Role)e.Source;
+            if (usRole.DataContext == null)
+                return;
+            UI角色 角色 = (UI角色)usRole.DataContext;
+            if (角色.败退)
+                return;
+
+            if (UI战斗.Current角色.IsTeamA)
+                teamA选择(角色);
+            else
+                teamB选择(角色);
+        }
+
+        private void teamA选择(UI角色 角色)
+        {
+            switch (current技能.技能目标)
+            {
+                case 技能目标.全体任一:
+                    if (!角色.IsTeamA)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.全体:
+                    if (!角色.IsTeamA)
+                    {
+                        foreach (var item in UI战斗.TeamBList)
+                            if (!item.败退)
+                                item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.最前列任一:
+                    if (!角色.IsTeamA)
+                    {
+                        if (角色.列 == 1)
+                            角色.选择中 = true;
+                        else if (角色.列 == 2)
+                        {
+                            if ((UI战斗.TeamB_1_1 == null || UI战斗.TeamB_1_1.败退) &&
+                                (UI战斗.TeamB_2_1 == null || UI战斗.TeamB_2_1.败退) &&
+                                (UI战斗.TeamB_3_1 == null || UI战斗.TeamB_3_1.败退))
+                                角色.选择中 = true;
+                        }
+                        else
+                        {
+                            if ((UI战斗.TeamB_1_1 == null || UI战斗.TeamB_1_1.败退) &&
+                                (UI战斗.TeamB_2_1 == null || UI战斗.TeamB_2_1.败退) &&
+                                (UI战斗.TeamB_3_1 == null || UI战斗.TeamB_3_1.败退) &&
+                                (UI战斗.TeamB_1_2 == null || UI战斗.TeamB_1_2.败退) &&
+                                (UI战斗.TeamB_2_2 == null || UI战斗.TeamB_2_2.败退) &&
+                                (UI战斗.TeamB_3_2 == null || UI战斗.TeamB_3_2.败退))
+                                角色.选择中 = true;
+                        }
+                    }
+                    break;
+                case 技能目标.同排最前列:
+                    if (!角色.IsTeamA)
+                    {
+                        var temp = (from u in UI战斗.TeamBList
+                                    where u.排 == UI战斗.Current角色.排 &&
+                                          !u.败退
+                                    orderby u.列
+                                    select u).FirstOrDefault();
+                        if (角色 == temp)
+                            角色.选择中 = true;
+                    }
+                    break;
+                case 技能目标.同排全体:
+                    if (!角色.IsTeamA && 角色.排 == UI战斗.Current角色.排)
+                    {
+                        var list = (from u in UI战斗.TeamBList
+                                    where u.排 == UI战斗.Current角色.排 &&
+                                          !u.败退
+                                    select u).ToList();
+
+                        foreach (var item in list)
+                            item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.同排任一:
+                    if (!角色.IsTeamA && 角色.排 == UI战斗.Current角色.排)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.一排全体:
+                    if (!角色.IsTeamA)
+                    {
+                        var list = (from u in UI战斗.TeamBList
+                                    where u.排 == 角色.排 &&
+                                          !u.败退
+                                    select u).ToList();
+
+                        foreach (var item in list)
+                            item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.后二列任一:
+                    if (!角色.IsTeamA && 角色.列 > 1)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.己方全体:
+                    if (角色.IsTeamA)
+                    {
+                        foreach (var item in UI战斗.TeamAList)
+                            if (!item.败退)
+                                item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.己方任一:
+                    if (角色.IsTeamA && !角色.败退)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.自己:
+                    if (角色.IsTeamA)
+                        UI战斗.Current角色.选择中 = true;
+                    break;
+            }
+        }
+
+        private void teamB选择(UI角色 角色)
+        {
+            switch (current技能.技能目标)
+            {
+                case 技能目标.全体任一:
+                    if (角色.IsTeamA)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.全体:
+                    if (角色.IsTeamA)
+                    {
+                        foreach (var item in UI战斗.TeamAList)
+                            if (!item.败退)
+                                item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.最前列任一:
+                    if (角色.IsTeamA)
+                    {
+                        if (角色.列 == 1)
+                            角色.选择中 = true;
+                        else if (角色.列 == 2)
+                        {
+                            if ((UI战斗.TeamA_1_1 == null || UI战斗.TeamA_1_1.败退) &&
+                                (UI战斗.TeamA_2_1 == null || UI战斗.TeamA_2_1.败退) &&
+                                (UI战斗.TeamA_3_1 == null || UI战斗.TeamA_3_1.败退))
+                                角色.选择中 = true;
+                        }
+                        else
+                        {
+                            if ((UI战斗.TeamA_1_1 == null || UI战斗.TeamA_1_1.败退) &&
+                                (UI战斗.TeamA_2_1 == null || UI战斗.TeamA_2_1.败退) &&
+                                (UI战斗.TeamA_3_1 == null || UI战斗.TeamA_3_1.败退) &&
+                                (UI战斗.TeamA_1_2 == null || UI战斗.TeamA_1_2.败退) &&
+                                (UI战斗.TeamA_2_2 == null || UI战斗.TeamA_2_2.败退) &&
+                                (UI战斗.TeamA_3_2 == null || UI战斗.TeamA_3_2.败退))
+                                角色.选择中 = true;
+                        }
+                    }
+                    break;
+                case 技能目标.同排最前列:
+                    if (角色.IsTeamA)
+                    {
+                        var temp = (from u in UI战斗.TeamAList
+                                    where u.排 == UI战斗.Current角色.排 &&
+                                          !u.败退
+                                    orderby u.列
+                                    select u).FirstOrDefault();
+                        if (角色 == temp)
+                            角色.选择中 = true;
+                    }
+                    break;
+                case 技能目标.同排全体:
+                    if (角色.IsTeamA && 角色.排 == UI战斗.Current角色.排)
+                    {
+                        var list = (from u in UI战斗.TeamAList
+                                    where u.排 == UI战斗.Current角色.排 &&
+                                          !u.败退
+                                    select u).ToList();
+
+                        foreach (var item in list)
+                            item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.同排任一:
+                    if (角色.IsTeamA && 角色.排 == UI战斗.Current角色.排)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.一排全体:
+                    if (角色.IsTeamA)
+                    {
+                        var list = (from u in UI战斗.TeamBList
+                                    where u.排 == 角色.排 &&
+                                          !u.败退
+                                    select u).ToList();
+
+                        foreach (var item in list)
+                            item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.后二列任一:
+                    if (角色.IsTeamA && 角色.列 > 1)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.己方全体:
+                    if (!角色.IsTeamA)
+                    {
+                        foreach (var item in UI战斗.TeamBList)
+                            if (!item.败退)
+                                item.选择中 = true;
+                    }
+                    break;
+                case 技能目标.己方任一:
+                    if (!角色.IsTeamA && !角色.败退)
+                        角色.选择中 = true;
+                    break;
+                case 技能目标.自己:
+                    if (!角色.IsTeamA)
+                        UI战斗.Current角色.选择中 = true;
+                    break;
+            }
+        }
+
+        private void us_Role_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!IsSkilling)
+                return;
+
+            List<角色> list = (from t in UI战斗.TeamAList
+                             where !t.败退 && t.选择中
+                             orderby t.列
+                             select t.角色).ToList();
+
+            list.AddRange((from t in UI战斗.TeamBList
+                           where !t.败退 && t.选择中
+                           orderby t.列
+                           select t.角色));
+
+            if (list.Count == 0)
+                return;
+
+            var result = 战斗管理.Action(UI战斗.Current角色.角色, current技能.Name, list);
+            show(result);
+
+            copy(战斗管理.Get战场(true), UI战斗);
+            copy(战斗管理.Get战场(true).行动顺序, UI战斗.行动顺序, UI战斗);
+
+            foreach (var 角色 in UI战斗.TeamAList)
+            {
+                copy(角色.角色, 角色);
+                角色.选择中 = false;
+            }
+            foreach (var 角色 in UI战斗.TeamBList)
+            {
+                copy(角色.角色, 角色);
+                角色.选择中 = false;
+            }
+
+            if (UI战斗.是否结束)
+                end();
+            else
+            {
+                var next角色 = 战斗管理.Get战场(true).行动顺序.List[0];
+                if (next角色.准备技能 != null)
+                {
+                    result = 战斗管理.Action(next角色, next角色.准备技能.Name, next角色.准备技能.准备技能目标List);
+                    show(result);
+
+                    copy(战斗管理.Get战场(true), UI战斗);
+                    copy(战斗管理.Get战场(true).行动顺序, UI战斗.行动顺序, UI战斗);
+
+                    foreach (var 角色 in UI战斗.TeamAList)
+                        copy(角色.角色, 角色);
+                    foreach (var 角色 in UI战斗.TeamBList)
+                        copy(角色.角色, 角色);
+                }
+
+                set行动者();
+            }
+        }
+
+        private void end()
+        {
+            Win_FightResult win = new Win_FightResult();
+            win.UI战斗 = UI战斗;
+            win.Win_Fight = this;
+
+            win.战斗结果 = 战斗管理.战斗结算()[0];
+            win.ShowDialog();
+        }
+
+        private void show(List<ActionResult> result)
+        {
+            for (int i = result.Count - 1; i >= 0; i--)
+                lstResult.Items.Insert(0,result[i].ToString());
+        }
+
+        private void us_Role_MouseLeave(object sender, MouseEventArgs e)
+        {
+            clear选择();
+        }
+
+        private void clear选择()
+        {
+            foreach (var 角色 in UI战斗.TeamAList)
+                角色.选择中 = false;
+            foreach (var 角色 in UI战斗.TeamBList)
+                角色.选择中 = false;
+        }
+
+        
     }
 }

@@ -9,7 +9,7 @@ namespace Rance.Battle
     {
         public 治愈之风()
         {
-            this.技能速度 = 40;
+            this.技能速度 = 80;
             this.技能目标 = Battle.技能目标.己方全体;
             this.消耗行动点 = 2;
             this.准备后执行技能 = new 治愈之风后();
@@ -20,7 +20,7 @@ namespace Rance.Battle
     {
         public 治愈之风后()
         {
-            this.技能速度 = 140;
+            this.技能速度 = 150;
             this.技能目标 = Battle.技能目标.己方全体;
             this.消耗行动点 = 0;
         }

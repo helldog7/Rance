@@ -97,6 +97,9 @@
     <Compile Include="Win\Win_Fight.xaml.cs">
       <DependentUpon>Win_Fight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Win\Win_FightResult.xaml.cs">
+      <DependentUpon>Win_FightResult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Win\Win_FightSetting.xaml.cs">
       <DependentUpon>Win_FightSetting.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Win\Win_Fight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win\Win_FightResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

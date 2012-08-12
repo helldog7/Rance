@@ -10,32 +10,33 @@
         <Label Content="{Binding 回合}" FontSize="20" Height="41" Margin="708,12,0,0" Name="label4" VerticalAlignment="Top" HorizontalAlignment="Left" Width="109" />
         <Label Content="战场修正" FontSize="20" Height="41" HorizontalAlignment="Left" Margin="1060,12,0,0" Name="label5" VerticalAlignment="Top" />
         <Label Content="{Binding 战场修正}" FontSize="20" Height="41" HorizontalAlignment="Right" Margin="0,12,12,0" Name="label6" VerticalAlignment="Top" Width="104" />
-        <Label Content="{Binding TeamA}" FontSize="20" Height="41" Margin="286,59,0,0" Name="label7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65" />
-        <Label Content="{Binding TeamB}" FontSize="20" Height="41" HorizontalAlignment="Left" Margin="975,59,0,0" Name="label8" VerticalAlignment="Top" Width="68" />
-        <my:Us_Role DataContext="{Binding TeamA_3_1}" HorizontalAlignment="Left" Margin="32,102,0,0" x:Name="us_Role1" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamA_2_1}" HorizontalAlignment="Left" Margin="221,102,0,0" x:Name="us_Role2" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamA_1_1}" HorizontalAlignment="Left" Margin="410,102,0,0" x:Name="us_Role3" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamA_3_2}" HorizontalAlignment="Left" Margin="32,240,0,0" x:Name="us_Role4" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamA_2_2}" HorizontalAlignment="Left" Margin="221,240,0,0" x:Name="us_Role5" VerticalAlignment="Top" Background="Pink" />
-        <my:Us_Role DataContext="{Binding TeamA_1_2}" HorizontalAlignment="Left" Margin="410,240,0,0" x:Name="us_Role6" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamA_3_3}" HorizontalAlignment="Left" Margin="32,378,0,0" x:Name="us_Role7" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamA_2_3}" HorizontalAlignment="Left" Margin="221,378,0,0" x:Name="us_Role8" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamA_1_3}"  HorizontalAlignment="Left" Margin="410,378,0,0" x:Name="us_Role9" VerticalAlignment="Top" Background="Pink"/>
-        <my:Us_Role DataContext="{Binding TeamB_1_1}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="718,102,0,0" x:Name="us_Role10" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_2_1}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="907,102,0,0" x:Name="us_Role11" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_3_1}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="1096,102,0,0" x:Name="us_Role12" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_1_2}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="718,240,0,0" x:Name="us_Role13" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_2_2}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="907,240,0,0" x:Name="us_Role14" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_3_2}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="1096,240,0,0" x:Name="us_Role15" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_1_3}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="718,378,0,0" x:Name="us_Role16" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_2_3}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="907,378,0,0" x:Name="us_Role17" VerticalAlignment="Top" />
-        <my:Us_Role DataContext="{Binding TeamB_3_3}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="1096,378,0,0" x:Name="us_Role18" VerticalAlignment="Top" />
+        <Label Content="{Binding TeamA}" FontSize="20" Height="41" Margin="307,59,0,0" Name="label7" VerticalAlignment="Top" HorizontalAlignment="Left"  />
+        <Label Content="{Binding TeamB}" FontSize="20" Height="41" HorizontalAlignment="Left" Margin="997,59,0,0" Name="label8" VerticalAlignment="Top"/>
+        <my:Us_Role DataContext="{Binding TeamA_3_1}" HorizontalAlignment="Left" Margin="32,102,0,0" x:Name="us_Role1" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_2_1}" HorizontalAlignment="Left" Margin="221,102,0,0" x:Name="us_Role2" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_1_1}" HorizontalAlignment="Left" Margin="410,102,0,0" x:Name="us_Role3" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_3_2}" HorizontalAlignment="Left" Margin="32,240,0,0" x:Name="us_Role4" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_2_2}" HorizontalAlignment="Left" Margin="221,240,0,0" x:Name="us_Role5" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_1_2}" HorizontalAlignment="Left" Margin="410,240,0,0" x:Name="us_Role6" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_3_3}" HorizontalAlignment="Left" Margin="32,378,0,0" x:Name="us_Role7" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_2_3}" HorizontalAlignment="Left" Margin="221,378,0,0" x:Name="us_Role8" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamA_1_3}"  HorizontalAlignment="Left" Margin="410,378,0,0" x:Name="us_Role9" VerticalAlignment="Top" Background="Pink" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_1_1}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="718,102,0,0" x:Name="us_Role10" VerticalAlignment="Top" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_2_1}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="907,102,0,0" x:Name="us_Role11" VerticalAlignment="Top" MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_3_1}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="1096,102,0,0" x:Name="us_Role12" VerticalAlignment="Top"  MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_1_2}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="718,240,0,0" x:Name="us_Role13" VerticalAlignment="Top"  MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_2_2}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="907,240,0,0" x:Name="us_Role14" VerticalAlignment="Top"  MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_3_2}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="1096,240,0,0" x:Name="us_Role15" VerticalAlignment="Top"  MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_1_3}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="718,378,0,0" x:Name="us_Role16" VerticalAlignment="Top"  MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_2_3}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="907,378,0,0" x:Name="us_Role17" VerticalAlignment="Top"  MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
+        <my:Us_Role DataContext="{Binding TeamB_3_3}" Background="#FF86CBFF" HorizontalAlignment="Left" Margin="1096,378,0,0" x:Name="us_Role18" VerticalAlignment="Top"  MouseEnter="us_Role_MouseEnter" MouseLeave="us_Role_MouseLeave" MouseDown="us_Role_MouseDown"/>
         <Rectangle Height="2" HorizontalAlignment="Left" Margin="12,526,0,0" Name="rectangle1" Stroke="Black" VerticalAlignment="Top" Width="1304" Fill="Black" />
-        <Button Content="技能1" Height="23" HorizontalAlignment="Left" Margin="286,564,0,0" Name="btn技能1" VerticalAlignment="Top" Width="119" />
-        <Button Content="技能2" Height="23" HorizontalAlignment="Left" Margin="426,564,0,0" Name="btn技能2" VerticalAlignment="Top" Width="119" />
-        <Button Content="技能3" Height="23" HorizontalAlignment="Left" Margin="286,602,0,0" Name="btn技能3" VerticalAlignment="Top" Width="119" />
-        <Button Content="技能4" Height="23" HorizontalAlignment="Left" Margin="426,602,0,0" Name="btn技能4" VerticalAlignment="Top" Width="119" />
-        <ListBox Height="115" HorizontalAlignment="Left" Margin="575,535,0,0" Name="listBox1" VerticalAlignment="Top" Width="704" BorderBrush="Gray" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-        <my1:UI_RoleInfo HorizontalAlignment="Left" Margin="12,535,0,0" x:Name="uI_RoleInfo1" VerticalAlignment="Top" />
+        <Button Content="技能1" Height="23" HorizontalAlignment="Left" Margin="286,547,0,0" Name="btn技能1" VerticalAlignment="Top" Width="119" Click="btn技能_Click"/>
+        <Button Content="技能2" Height="23" HorizontalAlignment="Left" Margin="426,547,0,0" Name="btn技能2" VerticalAlignment="Top" Width="119" Click="btn技能_Click"/>
+        <Button Content="技能3" Height="23" HorizontalAlignment="Left" Margin="286,585,0,0" Name="btn技能3" VerticalAlignment="Top" Width="119" Click="btn技能_Click"/>
+        <Button Content="技能4" Height="23" HorizontalAlignment="Left" Margin="426,585,0,0" Name="btn技能4" VerticalAlignment="Top" Width="119" Click="btn技能_Click"/>
+        <ListBox Height="115" HorizontalAlignment="Left" Margin="575,535,0,0" Name="lstResult" VerticalAlignment="Top" Width="704" BorderBrush="Gray" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <my1:UI_RoleInfo HorizontalAlignment="Left" Margin="12,535,0,0" x:Name="uI_RoleInfo1" VerticalAlignment="Top" DataContext="{Binding Select角色}"/>
+        <Button Content="取消" Height="23" HorizontalAlignment="Left" Margin="286,626,0,0" Name="btn取消" VerticalAlignment="Top" Width="119" Visibility="Hidden" Click="btn取消_Click" />
     </Grid>
 </Window>

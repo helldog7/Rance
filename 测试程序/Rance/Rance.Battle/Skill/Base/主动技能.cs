@@ -10,6 +10,9 @@ namespace Rance.Battle
         public virtual void Excute(技能环境 环境) 
         {
             环境.施放者.是否准备 = false;
+            环境.战场.行动顺序.行动(环境.施放者, this);
+            环境.施放者.守护率 = 0;
+            环境.施放者.全体守护率 = 0;
         }
 
         public List<角色> 准备技能目标List { get; set; }

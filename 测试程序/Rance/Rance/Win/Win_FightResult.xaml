@@ -1,0 +1,16 @@
+﻿<Window x:Class="Rance.Win_FightResult"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="战斗结果" Height="234" Width="532" Closed="Window_Closed">
+    <Grid>
+        <Label Content="胜方" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="红方" Height="28" HorizontalAlignment="Left" Margin="119,12,0,0" Name="lbl_Winner" VerticalAlignment="Top" />
+        <Label Content="掉武将率" Height="28" Margin="12,57,0,0" Name="label2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" />
+        <Label Content="{Binding 掉武将率}" Height="28" HorizontalAlignment="Left" Margin="119,57,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="掉装备率" Height="28" HorizontalAlignment="Left" Margin="12,102,0,0" Name="label4" VerticalAlignment="Top" Width="58" />
+        <Label Content="{Binding 掉装备率}" Height="28" HorizontalAlignment="Left" Margin="119,102,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="获得金钱" Height="28" HorizontalAlignment="Left" Margin="12,150,0,0" Name="label6" VerticalAlignment="Top" Width="58" />
+        <Label Content="{Binding 获得金钱}" Height="28" HorizontalAlignment="Left" Margin="119,150,0,0" Name="label7" VerticalAlignment="Top" />
+        <ListBox Height="159" HorizontalAlignment="Left" Margin="246,19,0,0" Name="lstResult" VerticalAlignment="Top" Width="246" />
+    </Grid>
+</Window>

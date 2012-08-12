@@ -13,7 +13,7 @@ namespace Rance.Battle
 
         public override string ToString()
         {
-            return string.Format("{0} 对 {1} 使用 {2},让其获得护盾!", 角色1,角色2, 技能);
+            return string.Format("{0} 对 {1} 使用 {2},让其获得护盾!", 角色1.Name, 角色2.Name, 技能.Name);
         }
     }
 }

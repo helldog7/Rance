@@ -10,13 +10,15 @@ namespace Rance.Battle
         public int 基数 = 0;
         public 战术解除()
         {
-            this.技能速度 = 140;
+            this.技能速度 = 130;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.全体;
         }
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
+
             List<int> list = new List<int>();
             int total = 0;
             foreach (var 角色 in 环境.战场.敌方角色List)

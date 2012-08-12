@@ -13,7 +13,7 @@ namespace Rance.Battle
 
         public override string ToString()
         {
-            return string.Format("{0} 使用 {1},获得 {2}点战场修正!", 角色, 技能, 战场修正);
+            return string.Format("{0} 使用 {1},获得 {2}点战场修正!", 角色.Name, 技能.Name, 战场修正);
         }
     }
 }

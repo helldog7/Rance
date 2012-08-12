@@ -7,8 +7,8 @@
              xmlns:local="clr-namespace:Rance.Tools"
              mc:Ignorable="d" 
              d:DesignHeight="34" d:DesignWidth="99" 
-             Height="34" Width="99" Background="{Binding IsTeamA,Converter={StaticResource TeamBrushConverter}}" >
+             Height="38" Width="99" Background="{Binding IsTeamA,Converter={StaticResource TeamBrushConverter}}" >
     <Grid>
-        <Label Content="{Binding Name}" Height="34" HorizontalAlignment="Center" Margin="12,0" Name="label1" VerticalAlignment="Center" Foreground="White"/>
+        <Label Content="{Binding Name}" Height="34" HorizontalAlignment="Center" Margin="12,0" Name="label1" VerticalAlignment="Top" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
     </Grid>
 </UserControl>

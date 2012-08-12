@@ -13,7 +13,7 @@ namespace Rance.Battle
 
         public override string ToString()
         {
-            return string.Format("{0} 使用 {1},额外消耗了 {2}个回合!", 角色, 技能, 回合数);
+            return string.Format("{0} 使用 {1},额外消耗了 {2}个回合!", 角色, 技能.Name, 回合数);
         }
     }
 }

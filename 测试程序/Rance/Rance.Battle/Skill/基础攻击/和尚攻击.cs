@@ -10,7 +10,7 @@ namespace Rance.Battle
         public 和尚攻击()
         {
             this.可被守护 = true;
-            this.技能速度 = 120;
+            this.技能速度 = 130;
             this.能否被反击 = true;
             this.物理系 = true;
             this.技能目标 = Battle.技能目标.最前列任一;
@@ -39,7 +39,7 @@ namespace Rance.Battle
     {
         public override decimal Get武将加成(角色 角色1, 角色 角色2)
         {
-            var value = base.Get基础伤害(角色1, 角色2);
+            var value = base.Get武将加成(角色1, 角色2);
             if (角色2.兵种.Name == "怪物")
                 value *= 2.5m;
             return value;

@@ -40,8 +40,8 @@ namespace Rance.Battle
                 inner战场.敌方队伍名称 = 己方队伍名称;
                 inner战场.己方角色List = 敌方角色List;
                 inner战场.敌方角色List = 己方角色List;
-                inner战场.当前回合 = 当前回合;
             }
+            inner战场.当前回合 = 当前回合;
             inner战场.最大回合数 = 最大回合数;
             inner战场.战果 = 0 - 战果;
             inner战场.战场修正 = 0 - 战场修正;

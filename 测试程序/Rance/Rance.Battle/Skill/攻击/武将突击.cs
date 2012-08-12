@@ -10,7 +10,7 @@ namespace Rance.Battle
         public 武将突击()
         {
             this.可被守护 = true;
-            this.技能速度 = 140;
+            this.技能速度 = 160;
             this.能否被反击 = true;
             this.物理系 = true;
             this.技能目标 = Battle.技能目标.最前列任一;

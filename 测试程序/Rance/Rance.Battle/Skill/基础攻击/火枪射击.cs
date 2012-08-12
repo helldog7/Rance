@@ -10,7 +10,7 @@ namespace Rance.Battle
         public 火枪射击()
         {
             this.可被守护 = true;
-            this.技能速度 = 230;
+            this.技能速度 = 200;
             this.能否被反击 = false;
             this.物理系 = true;
             this.技能目标 = Battle.技能目标.同排最前列;

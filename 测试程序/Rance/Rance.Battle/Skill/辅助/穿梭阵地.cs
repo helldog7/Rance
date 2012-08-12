@@ -10,13 +10,15 @@ namespace Rance.Battle
         public int 基数 = 4;
         public 穿梭阵地()
         {
-            this.技能速度 = 40;
+            this.技能速度 = 60;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.己方全体;
         }
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
+
             var temp = 常量.最大战场修正 - 环境.战场.战场修正;
             temp = temp > 基数 ? 基数 : temp;
             环境.战场.战场修正 += temp;

@@ -17,6 +17,9 @@ namespace Rance.Battle
 
         public override void Excute(技能环境 环境)
         {
+            环境.施放者.是否准备 = false;
+            环境.战场.行动顺序.行动(环境.施放者, this);
+
             环境.ResultList.Add(new 守护结果()
             {
                 技能 = this,
@@ -51,6 +54,8 @@ namespace Rance.Battle
 
         public override void Excute(技能环境 环境)
         {
+            环境.施放者.是否准备 = false;
+            环境.战场.行动顺序.行动(环境.施放者, this);
             环境.ResultList.Add(new 守护结果()
             {
                 技能 = this,
@@ -71,6 +76,8 @@ namespace Rance.Battle
 
         public override void Excute(技能环境 环境)
         {
+            环境.施放者.是否准备 = false;
+            环境.战场.行动顺序.行动(环境.施放者, this);
             环境.ResultList.Add(new 守护结果()
             {
                 技能 = this,

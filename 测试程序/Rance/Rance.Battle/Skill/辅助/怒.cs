@@ -10,13 +10,15 @@ namespace Rance.Battle
         public int Level = 4;
         public 怒()
         {
-            this.技能速度 = 70;
+            this.技能速度 = 80;
             this.消耗行动点 = 1;
             this.技能目标 = Battle.技能目标.自己;
         }
 
         public override void Excute(技能环境 环境)
         {
+            base.Excute(环境);
+
             var 赋予 = new 赋予()
             {
                 Level = Level,
