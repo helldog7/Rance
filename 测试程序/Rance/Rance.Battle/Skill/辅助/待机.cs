@@ -16,5 +16,11 @@ namespace Rance.Battle
 
         public static 待机 Instance = new 待机();
 
+        public override void Excute(技能环境 环境)
+        {
+            环境.施放者.是否准备 = false;
+            环境.战场.行动顺序.行动(环境.施放者, this);
+        }
+
     }
 }

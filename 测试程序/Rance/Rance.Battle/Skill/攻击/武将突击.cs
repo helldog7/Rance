@@ -21,7 +21,7 @@ namespace Rance.Battle
         public override decimal Get基础伤害(角色 角色1,角色 角色2)
         {
             var value = base.Get基础伤害(角色1, 角色2);
-            value += 角色1.攻 * 25;
+            value += 角色1.攻 * 60;
 
             return value;
         }

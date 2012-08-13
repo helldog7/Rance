@@ -7,11 +7,11 @@ namespace Rance.Battle
 {
     public class 攻击技能:主动技能
     {
-        public bool 可被守护 { get; set; }
+        public bool 可被守护 = true;
         public decimal 伤害系数 = 1m;
         public int 打断系数 = 100;
-        public bool 物理系 { get; set; }
-        public bool 能否被反击 { get; set; }
+        public bool 物理系 = true;
+        public bool 能否被反击 = true;
 
         #region 计算
 

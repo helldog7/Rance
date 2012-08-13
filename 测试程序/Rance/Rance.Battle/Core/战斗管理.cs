@@ -310,12 +310,29 @@ namespace Rance.Battle
                 teamA战场.IsEnd = true;
             }
 
+            foreach (var 效果 in 角色.效果List)
+            {
+                if (效果 is 自己回合结束效果)
+                {
+                    自己回合结束效果 自己回合结束效果 = (自己回合结束效果)效果;
+                    自己回合结束效果.Excute(角色, 技能环境);
+                }
+            }
+
             bool isAllDead = true;
             foreach (var item in teamA战场.己方角色List)
             {
                 if (!item.是否败走)
                 {
                     isAllDead = false;
+                    foreach (var 效果 in item.效果List)
+                    {
+                        if (效果 is 回合结束效果 && !(效果 is 自己回合结束效果))
+                        {
+                            回合结束效果 回合结束效果 = (回合结束效果)效果;
+                            回合结束效果.Excute(item,技能环境);
+                        }
+                    }
                     break;
                 }
             }
@@ -329,6 +346,14 @@ namespace Rance.Battle
                     if (!item.是否败走)
                     {
                         isAllDead = false;
+                        foreach (var 效果 in item.效果List)
+                        {
+                            if (效果 is 回合结束效果 && !(效果 is 自己回合结束效果))
+                            {
+                                回合结束效果 回合结束效果 = (回合结束效果)效果;
+                                回合结束效果.Excute(item, 技能环境);
+                            }
+                        }
                         break;
                     }
                 }
@@ -339,6 +364,9 @@ namespace Rance.Battle
 
             技能环境.战场.当前回合++;
             if (teamA战场.当前回合 >= teamA战场.最大回合数)
+                teamA战场.IsEnd = true;
+
+            if (teamA战场.行动顺序.List.Count == 0)
                 teamA战场.IsEnd = true;
 
             if (!teamA战场.己方角色List.Contains(角色))

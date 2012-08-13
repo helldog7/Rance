@@ -9,16 +9,16 @@ namespace Rance.Battle
     {
         public int 回复比率 = 10;
 
-        public override void Excute(技能环境 环境)
+        public override void Excute(角色 角色, 技能环境 环境)
         {
-            var temp1 = 环境.施放者.最大兵力 - 环境.施放者.兵力;
-            var temp2 = 环境.施放者.最大兵力 * 回复比率 / 100;
+            var temp1 = 角色.最大兵力 - 角色.兵力;
+            var temp2 = 角色.最大兵力 * 回复比率 / 100;
             var result = temp1 < temp2 ? temp1 : temp2;
-            环境.施放者.兵力 += result;
+            角色.兵力 += result;
 
             环境.ResultList.Add(new 回复结果()
             {
-                角色2 = 环境.施放者,
+                角色2 = 角色,
                 效果 = this,
                 回复量 = result
             });

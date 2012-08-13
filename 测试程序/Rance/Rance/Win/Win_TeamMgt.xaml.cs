@@ -53,7 +53,7 @@ namespace Rance
         {
             foreach (var item in team.TeamRole.ToArray())
                 entites.DeleteObject(item);
-            if (team.第一排前列 != null)
+            if (team.第一排前列 != null && team.第一排前列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -65,7 +65,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第一排中列 != null)
+            if (team.第一排中列 != null && team.第一排中列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -77,7 +77,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第一排后列 != null)
+            if (team.第一排后列 != null && team.第一排后列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -89,7 +89,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第二排前列 != null)
+            if (team.第二排前列 != null && team.第二排前列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -101,7 +101,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第二排中列 != null)
+            if (team.第二排中列 != null && team.第二排中列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -113,7 +113,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第二排后列 != null)
+            if (team.第二排后列 != null && team.第二排后列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -125,7 +125,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第三排前列 != null)
+            if (team.第三排前列 != null && team.第三排前列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -137,7 +137,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第三排中列 != null)
+            if (team.第三排中列 != null && team.第三排中列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {
@@ -149,7 +149,7 @@ namespace Rance
                 };
                 entites.TeamRole.AddObject(teamRole);
             }
-            if (team.第三排后列 != null)
+            if (team.第三排后列 != null && team.第三排后列.ID != Guid.Empty)
             {
                 TeamRole teamRole = new TeamRole()
                 {

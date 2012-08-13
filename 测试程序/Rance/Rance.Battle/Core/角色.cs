@@ -37,10 +37,11 @@ namespace Rance.Battle
         public bool IsTeamA { get; set; }
 
         private 赋予 _攻击赋予;
-        public 赋予 攻击赋予 
+        public 赋予 攻击赋予
         {
             get { return _攻击赋予; }
-            set {
+            set
+            {
                 if (_攻击赋予 != null && _攻击赋予.Level > value.Level)
                     return;
                 _攻击赋予 = value;
@@ -116,7 +117,7 @@ namespace Rance.Battle
             效果List.Add(效果);
         }
 
-        
+
 
         #endregion
 
@@ -128,34 +129,45 @@ namespace Rance.Battle
             {
                 int i1, i2, i3;
                 if (兵力 >= 500)
-                    i1 = 500;
-                else
-                    i1 = 兵力;
-                if (兵力 >= 1500)
                 {
-                    i2 = 500;
-                    i3 = (兵力 - 1500) / 4;
+                    i1 = 500;
+
+                    if (兵力 >= 1500)
+                    {
+                        i2 = 500;
+                        i3 = (兵力 - 1500) / 4;
+                    }
+                    else
+                    {
+                        i2 = (兵力 - 500) / 2;
+                        i3 = 0;
+                    }
                 }
                 else
                 {
-                    i2 = (兵力 - 500) / 2;
+                    i1 = 兵力;
+                    i2 = 0;
                     i3 = 0;
                 }
 
-                return i1 + i2 + i3;
+                int i4 = 临时攻 >= 3 ? (临时攻 - 3) * 60 : 60;
+
+                return Convert.ToInt32((i1 + i2 + i3) * 0.9m) + i4;
 
             }
         }
 
+        
+
         public decimal 实际攻
-        { 
+        {
             get
             {
                 if (攻击赋予 == null)
                     return 临时攻;
                 else
-                    return 临时攻 * (1 + 攻击赋予.Level / 10m);
-            }   
+                    return 临时攻 * (1 + 攻击赋予.Level * 常量.赋予效果系数[攻击赋予.Level - 1] / 100m);
+            }
         }
 
         public decimal 实际防
@@ -165,7 +177,7 @@ namespace Rance.Battle
                 if (防御赋予 == null)
                     return 临时防;
                 else
-                    return 临时防 * (1 + 防御赋予.Level / 10m);
+                    return 临时防 * (1 + 防御赋予.Level * 常量.赋予效果系数[防御赋予.Level - 1] * 0.8m / 100m);
             }
         }
 
@@ -176,7 +188,7 @@ namespace Rance.Battle
                 if (速度赋予 == null)
                     return 临时速;
                 else
-                    return 临时速 * (1 + 速度赋予.Level / 10m);
+                    return 临时速 * (1 + 速度赋予.Level * 常量.赋予效果系数[速度赋予.Level - 1] / 100m);
             }
         }
 
@@ -187,7 +199,7 @@ namespace Rance.Battle
                 if (智力赋予 == null)
                     return 临时智;
                 else
-                    return 临时智 * (1 + 智力赋予.Level / 10m);
+                    return 临时智 * (1 + 智力赋予.Level * 常量.赋予效果系数[智力赋予.Level - 1] / 100m);
             }
         }
         #endregion
@@ -195,6 +207,7 @@ namespace Rance.Battle
         public override string ToString()
         {
             return Name + " " + 顺序值.ToString();
-        }
+        }
+
     }
 }

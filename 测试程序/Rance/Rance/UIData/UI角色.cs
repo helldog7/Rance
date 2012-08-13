@@ -94,7 +94,7 @@ namespace Rance
             get { return _防赋予; }
             set
             {
-                if (_防赋予 != value) { _防赋予 = value; SendPropertyChanged("_防赋予"); }
+                if (_防赋予 != value) { _防赋予 = value; SendPropertyChanged("防赋予"); }
             }
         }
 

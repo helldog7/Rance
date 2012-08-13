@@ -38,26 +38,26 @@ namespace Rance
                     cmb基础攻击技能.ItemsSource = new List<string>() { "盾兵攻击", "盾兵攻击2", "盾兵攻击3" };
                     cmb技能1.ItemsSource = new List<string>() { "", "枪袭", "枪袭2", "仇恨之击", "掠夺" };
                     cmb技能2.ItemsSource = new List<string>() { "", "守护战友", "守护战友2", "全体守护战友", "全体守护战友2" };
-                    cmb被动技能.ItemsSource = new List<string>() { "", "攻击运", "防御运", "速度运", "智力运", "团结力", "反击强化", "反击强化2", "初期防御2", "初期全体防御" };
+                    cmb被动技能.ItemsSource = new List<string>() { "", "攻击运", "攻击运2", "防御运", "防御运2", "速度运", "速度运2", "智力运", "智力运2", "团结力", "反击强化", "反击强化2", "初期防御2", "初期全体防御" };
                     txt特殊技能.Text = "初期防御";
                     break;
                 case "剑士":
                     cmb基础攻击技能.ItemsSource = new List<string>() { "剑士攻击", "剑士攻击2", "剑士攻击3" };
                     cmb技能1.ItemsSource = new List<string>() { "", "武将突击", "全军突击", "全军突击2", "大声突击", "迂回攻击" };
                     cmb技能2.ItemsSource = new List<string>() { "", "怒", "怒2" };
-                    cmb被动技能.ItemsSource = new List<string>() { "", "攻击运", "防御运", "速度运", "智力运", "团结力" };
+                    cmb被动技能.ItemsSource = new List<string>() { "",  "攻击运", "攻击运2", "防御运", "防御运2", "速度运", "速度运2", "智力运", "团结力" };
                     break;
                 case "忍者":
                     cmb基础攻击技能.ItemsSource = new List<string>() { "手里剑", "手里剑2", "手里剑3" };
                     cmb技能1.ItemsSource = new List<string>() { "", "暗杀", "暗杀2", "穿越手里剑", "音速手里剑" };
                     cmb技能2.ItemsSource = new List<string>() { "", "穿梭阵地", "穿梭阵地2", "穿梭阵地3", "遁术", "遁术2" };
-                    cmb被动技能.ItemsSource = new List<string>() { "", "攻击运", "防御运", "速度运", "智力运" };
+                    cmb被动技能.ItemsSource = new List<string>() { "",  "攻击运", "攻击运2", "防御运", "防御运2", "速度运", "速度运2", "智力运" };
                     break;
                 case "弓兵":
                     cmb基础攻击技能.ItemsSource = new List<string>() { "弓箭射击", "弓箭射击2", "弓箭射击3", "阻击盾兵", "阻击剑士" };
                     cmb技能1.ItemsSource = new List<string>() { "", "全体射击", "全体射击2", "贯通射击", "贯通射击2", "疾风点破" };
                     cmb技能2.ItemsSource = new List<string>() { "" };
-                    cmb被动技能.ItemsSource = new List<string>() { "", "攻击运", "防御运", "速度运", "智力运" };
+                    cmb被动技能.ItemsSource = new List<string>() { "",  "攻击运", "攻击运2", "防御运", "防御运2", "速度运", "速度运2", "智力运" };
                     break;
                 case "军师":
                     cmb基础攻击技能.ItemsSource = new List<string>() { "弓箭射击", "弓箭射击2", "弓箭射击3" };
@@ -75,12 +75,12 @@ namespace Rance
                     cmb基础攻击技能.ItemsSource = new List<string>() { "和尚攻击", "和尚攻击2", "和尚攻击3", "怪物散退" };
                     cmb技能1.ItemsSource = new List<string>() { "" };
                     cmb技能2.ItemsSource = new List<string>() { "", "防御解除", "防御解除2", "生机转换", "生机转换2" };
-                    cmb被动技能.ItemsSource = new List<string>() { "", "攻击运", "防御运", "速度运", "智力运", "天神庇佑", "天神庇佑2", "苦行", "苦行2" };
+                    cmb被动技能.ItemsSource = new List<string>() { "",  "攻击运", "攻击运2", "防御运", "防御运2", "速度运", "速度运2", "智力运", "天神庇佑", "天神庇佑2", "苦行", "苦行2" };
                     break;
                 case "火枪":
                     cmb基础攻击技能.ItemsSource = new List<string>() { "火枪射击", "火枪射击2", "火枪射击3", "火枪阻击" };
                     cmb技能1.ItemsSource = new List<string>() { "" };
-                    cmb技能2.ItemsSource = new List<string>() { "" };
+                    cmb技能2.ItemsSource = new List<string>() { "", "瞄准", "瞄准2" };
                     cmb被动技能.ItemsSource = new List<string>() { "" };
                     break;
                 case "阴阳师":

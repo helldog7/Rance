@@ -25,6 +25,7 @@ namespace Rance
             var roleList = (from r in entites.Role
                             orderby r.Name
                             select r).ToList();
+            roleList.Insert(0, new Role());
             this.cmb第二排后列.ItemsSource = this.cmb第二排前列.ItemsSource = this.cmb第二排中列.ItemsSource = this.cmb第三排后列.ItemsSource = this.cmb第三排中列.ItemsSource = this.cmb第三排前列.ItemsSource = this.cmb第一排后列.ItemsSource = this.cmb第一排前列.ItemsSource = this.cmb第一排中列.ItemsSource = roleList;
 
             Team = team;
